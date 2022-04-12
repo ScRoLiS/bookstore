@@ -1,12 +1,34 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { useHover } from '../hooks/useHover'
+import { addToCart, removeFromCart } from '../store/actions/cartAction'
 import Button from './Button'
 
 const BookCard = (props) => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [ref, hover] = useHover()
+  const { cart } = useSelector(state => state.cart)
 
   const handleMoreButton = () => {
     navigate('/book/' + props.id)
+  }
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(props))
+  }
+
+  const handleRemoveFromCart = () => {
+    dispatch(removeFromCart(props.id))
+  }
+
+  const isInCart = (id) => {
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].id === id)
+        return true
+    }
+    return false
   }
 
   return (
@@ -22,7 +44,10 @@ const BookCard = (props) => {
           <span>Цена: {props.price} тг.</span>
           <Link to={`/book/${props.id}`}></Link>
           <Button onClick={handleMoreButton} type="outline">Подробнее</Button>
-          <Button type="primary">В корзину</Button>
+          {isInCart(props.id)
+            ? <Button onHover="Убрать" onClick={handleRemoveFromCart} type="remove">В корзине</Button>
+            : <Button onClick={handleAddToCart} type="primary">В корзину</Button>
+          }
         </div>
       </div>
     </div>
