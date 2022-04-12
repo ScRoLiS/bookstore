@@ -41,7 +41,7 @@ const BookCard = (props) => {
         <div className="mt-auto text-xs flex flex-col gap-2">
           <span>Автор: {props.author}</span>
           <span>Кол-во страниц: {props.pages}</span>
-          <span>Цена: {props.price} тг.</span>
+          <span className="font-medium text-sm">Цена: {props.price} тг.</span>
           <Link to={`/book/${props.id}`}></Link>
           <Button onClick={handleMoreButton} type="outline">Подробнее</Button>
           {isInCart(props.id)
