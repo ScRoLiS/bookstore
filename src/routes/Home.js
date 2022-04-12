@@ -17,7 +17,7 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-3 gap-4">
+    <div className="grid md:grid-cols-2 sm:grid-cols-1 2xl:grid-cols-3 gap-4">
       {books.map((item) => {
         return <BookCard key={item.id} {...item} />
       })}

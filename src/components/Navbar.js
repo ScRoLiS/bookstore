@@ -20,9 +20,9 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 shadow-md bg-white">
-      <div className="container flex justify-between items-center h-24">
-        <Link className="flex gap-2 items-center text-2xl font-bold" to="/">
-          <BsBookHalf className="text-sky-400 mt-1" />
+      <div className="container flex justify-between items-center h-16 md:h-24">
+        <Link className="flex gap-2 items-center font-bold text-base md:text-2xl" to="/">
+          <BsBookHalf className="text-sky-400 mt-0.5 md:mt-1" />
           <span>BOOK<span className="text-sky-400">STORE</span></span>
         </Link>
         <ul className="list-none flex gap-2">
