@@ -8,7 +8,7 @@
   }
 
   .nav-link {
-    @apply flex flex-col items-center p-2 rounded-md hover:bg-sky-100;
+    @apply flex flex-col items-center p-2 rounded-md hover:bg-sky-200;
 
     min-width: 90px;
   }
