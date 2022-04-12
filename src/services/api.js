@@ -6,8 +6,6 @@ export default class API {
     const req = await fetch(this.baseUrl + '/api/books?populate=image')
     const { data } = await req.json()
 
-    console.log(data);
-
     const newData = data.map((item) => {
       const { id, attributes } = item
       const { author, name, genre, price, pages, image } = attributes
