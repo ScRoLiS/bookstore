@@ -8,7 +8,7 @@
   }
 
   .nav-link {
-    @apply flex flex-col items-center p-2 rounded-md hover:bg-sky-200;
+    @apply flex flex-col items-center p-2 rounded-md hover:bg-sky-200 relative;
 
     min-width: 90px;
   }
@@ -23,6 +23,15 @@
 
   .button-outline {
     @apply outline outline-sky-400 text-sky-400 p-2 bg-white rounded-md w-full hover:outline-sky-300 hover:text-white hover:bg-sky-300;
+  }
+
+  .button-remove {
+    @apply text-white p-2 bg-green-500 rounded-md w-full hover:bg-red-400;
+  }
+
+  .cart-size {
+    @apply flex items-center justify-center absolute w-4 h-4 top-3 right-5 bg-red-400 text-white text-xs rounded-3xl;
+    font-size: 9px;
   }
 
   body {
