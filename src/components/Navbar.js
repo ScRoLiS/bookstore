@@ -38,8 +38,10 @@ const Navbar = () => {
           })}
           <li>
             <NavLink to="/cart" className={linkStyleSwich}>
-              {cart.length ? <div className="cart-size">{cart.length}</div> : null}
-              <BsCart3 className="text-xl" />
+              <div className="flex items-center">
+                <BsCart3 className="text-xl" />
+                {cart.length ? <span className="cart-size">+{cart.length}</span> : null}
+              </div>
               <span>Корзина</span>
             </NavLink>
           </li>

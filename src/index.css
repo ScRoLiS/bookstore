@@ -30,8 +30,9 @@
   }
 
   .cart-size {
-    @apply flex items-center justify-center absolute w-4 h-4 top-3 right-5 bg-red-400 text-white text-xs rounded-3xl;
-    font-size: 9px;
+    @apply flex items-center justify-center w-5 h-5 bg-red-400 text-white text-xs rounded-3xl;
+    font-size: 8.5px;
+    line-height: 0px;
   }
 
   body {
