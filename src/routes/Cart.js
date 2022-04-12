@@ -1,9 +1,19 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Button } from '../components'
 
 const Cart = () => {
   const { cart } = useSelector(state => state.cart)
+
+  if (!cart.length) {
+    return (
+      <div className="p-4 rounded-md shadow-md bg-white items-center flex flex-col">
+        <span className="font-medium text-2xl">Корзина пуста!</span>
+        <span className="text-center">Перейдите в <Link to="/" className="border-dotted border-b-2 border-black hover:text-gray-300 hover:border-gray-300">Магазин</Link> для совершения покупок</span>
+      </div>
+    )
+  }
 
   return (
     <div className="p-4 rounded-md shadow-md bg-white">

@@ -16,8 +16,6 @@ const Navbar = () => {
     return isActive ? 'nav-link-active' : 'nav-link'
   }
 
-  console.log('RENDERED');
-
   return (
     <nav className="sticky top-0 shadow-md bg-white">
       <div className="container flex justify-between items-center h-16 md:h-24">
