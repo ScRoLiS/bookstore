@@ -7,8 +7,11 @@ module.exports = {
       center: true
     },
     screens: {
-      'lg': '1080px',
-      'md': '1080px'
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1024px',
+      '2xl': '1024px'
     },
     extend: {},
   },
