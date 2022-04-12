@@ -22,7 +22,7 @@
   }
 
   .button-outline {
-    @apply outline outline-sky-400 text-sky-400 p-2 bg-white rounded-md w-full hover:text-white hover:bg-sky-400;
+    @apply outline outline-sky-400 text-sky-400 p-2 bg-white rounded-md w-full hover:outline-sky-300 hover:text-white hover:bg-sky-300;
   }
 
   body {
