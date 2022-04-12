@@ -1,14 +1,12 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { useHover } from '../hooks/useHover'
 import { addToCart, removeFromCart } from '../store/actions/cartAction'
 import Button from './Button'
 
 const BookCard = (props) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [ref, hover] = useHover()
   const { cart } = useSelector(state => state.cart)
 
   const handleMoreButton = () => {
