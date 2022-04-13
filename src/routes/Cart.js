@@ -21,12 +21,12 @@ const Cart = () => {
         {cart.map((item) => {
           return (
             <li key={item.id} className="flex gap-4">
-              <img src={item.img} alt={item.name} className=" rounded-md h-40" />
+              <img src={item.image} alt={item.name} className=" rounded-md h-40" />
               <div className="flex flex-col w-96">
                 <span className="text-lg font-medium">{item.name}</span>
-                <span>Автор: {item.author}</span>
+                <span>Автор: {item.authors.map((item) => `${item.name} `)}</span>
                 <span>Кол-во страниц: {item.pages}</span>
-                <span>Жанр: {item.genre}</span>
+                <span>Жанр: {item.genres.map((item) => `${item.name} `)}</span>
                 <button className="underline justify-center">Убрать</button>
               </div>
               <div className="flex items-center">
