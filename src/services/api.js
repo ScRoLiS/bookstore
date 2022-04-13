@@ -9,7 +9,7 @@ export default class API {
     const newData = data.map((item) => {
       const { id, attributes } = item
       const { author, name, genre, price, pages, image } = attributes
-      const img = this.baseUrl + image.data.attributes.url
+      const img = image.data.attributes.url
 
       return { id, author, name, genre, price, pages, img }
     })
