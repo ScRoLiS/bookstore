@@ -7,6 +7,10 @@
     padding: 0 10px;
   }
 
+  .link {
+    @apply border-dotted border-b-2 border-black hover:text-gray-300 hover:border-gray-300;
+  }
+
   .nav-link {
     @apply flex flex-row gap-2 md:gap-0 md:flex-col items-center p-2 rounded-md hover:bg-sky-200 relative;
 
@@ -22,7 +26,7 @@
   }
 
   .button-outline {
-    @apply outline outline-sky-400 text-sky-400 p-2 bg-white rounded-md w-full hover:outline-sky-300 hover:text-white hover:bg-sky-300;
+    @apply border border-sky-400 text-sky-400 p-2 bg-white rounded-md w-full hover:border-sky-300 hover:text-white hover:bg-sky-300;
   }
 
   .button-remove {
