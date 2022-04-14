@@ -1,17 +1,12 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { addToCart, removeFromCart } from '../store/actions/cartAction'
 import Button from './Button'
 
 const BookCard = (props) => {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const { cart } = useSelector(state => state.cart)
-
-  const handleMoreButton = () => {
-    navigate('/book/' + props.id)
-  }
 
   const handleAddToCart = () => {
     dispatch(addToCart(props))
@@ -40,8 +35,7 @@ const BookCard = (props) => {
           <span>Автор: {props.authors.map((item) => `${item.name} `)}</span>
           <span>Кол-во страниц: {props.pages}</span>
           <span className="font-medium text-sm">Цена: {props.price} тг.</span>
-          <Link to={`/book/${props.id}`}></Link>
-          <Button onClick={handleMoreButton} type="outline">Подробнее</Button>
+          <Link className="button button-outline" to={`/book/${props.id}`}>Подробнее</Link>
           {isInCart(props.id)
             ? <Button onHover="Убрать" onClick={handleRemoveFromCart} type="remove">В корзине</Button>
             : <Button onClick={handleAddToCart} type="primary">В корзину</Button>
