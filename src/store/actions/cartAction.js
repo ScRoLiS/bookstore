@@ -13,3 +13,17 @@ export const removeFromCart = (id) => {
     payload: id
   }
 }
+
+export const incrementCount = (id) => {
+  return {
+    type: CartType.INCREMENT_COUNT,
+    payload: id
+  }
+}
+
+export const decrementCount = (id) => {
+  return {
+    type: CartType.DECREMENT_COUNT,
+    payload: id
+  }
+}

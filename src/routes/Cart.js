@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button } from '../components'
-import { removeFromCart } from '../store/actions/cartAction'
+import { decrementCount, incrementCount, removeFromCart } from '../store/actions/cartAction'
 
 const Cart = () => {
   const { cart } = useSelector(state => state.cart)
@@ -11,6 +11,18 @@ const Cart = () => {
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart(id))
   }
+
+  const handleIncrementCount = (id) => {
+    dispatch(incrementCount(id))
+  }
+
+  const handleDecrementCount = (id) => {
+    dispatch(decrementCount(id))
+  }
+  
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   if (!cart.length) {
     return (
@@ -35,12 +47,13 @@ const Cart = () => {
                 <span>Жанр: {item.genres.map((item) => `${item.name}`).join(', ')}</span>
                 <button onClick={() => { handleRemoveFromCart(item.id) }} className="link hover:text-red-400 hover:border-red-400 justify-center">Убрать</button>
               </div>
-              <div className="flex items-center">
-                <Button className="shrink-0" type="outline">-</Button>
-                <Button className="shrink-0" type="outline">+</Button>
+              <div className="flex shrink-0 gap-2 items-center">
+                <Button type="outline" onClick={() => { handleDecrementCount(item.id) }}>-</Button>
+                <span>{item.count}</span>
+                <Button type="outline" onClick={() => { handleIncrementCount(item.id) }}>+</Button>
               </div>
               <div className="font-bold text-2xl ml-auto self-center">
-                {item.price} тг.
+                {item.price * item.count} тг.
               </div>
             </li>
           )
