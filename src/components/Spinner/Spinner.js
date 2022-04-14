@@ -4,8 +4,8 @@ import './Spinner.css'
 
 const Spinner = () => {
   return (
-    <div className="flex justify-center items-center">
-      <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div className="flex h-full flex-grow justify-center items-center">
+      <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>
   )
 }

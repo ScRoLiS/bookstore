@@ -42,4 +42,9 @@
   body {
     @apply bg-slate-100;
   }
+
+  .app {
+    min-height: 100vh;
+    @apply flex flex-col
+  }
 }

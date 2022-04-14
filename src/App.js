@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="app">
       <Navbar />
-      <div className="container mt-4 mb-4">
+      <div className="container flex flex-col flex-grow mt-4 mb-4">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
