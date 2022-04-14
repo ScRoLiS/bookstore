@@ -1,10 +1,16 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button } from '../components'
+import { removeFromCart } from '../store/actions/cartAction'
 
 const Cart = () => {
   const { cart } = useSelector(state => state.cart)
+  const dispatch = useDispatch()
+
+  const handleRemoveFromCart = (id) => {
+    dispatch(removeFromCart(id))
+  }
 
   if (!cart.length) {
     return (
@@ -20,14 +26,14 @@ const Cart = () => {
       <ul className="flex flex-col gap-4 list-none">
         {cart.map((item) => {
           return (
-            <li key={item.id} className="flex gap-4">
-              <img src={item.image} alt={item.name} className=" rounded-md h-40" />
-              <div className="flex flex-col w-96">
-                <span className="text-lg font-medium">{item.name}</span>
-                <span>Автор: {item.authors.map((item) => `${item.name} `)}</span>
+            <li key={item.id} className="flex gap-4 p-4">
+              <img src={item.image} alt={item.name} className="rounded-md h-40" />
+              <div className="flex flex-col items-start justify-between w-96">
+                <span className="whitespace-nowrap w-full overflow-hidden overflow-ellipsis text-lg font-medium">{item.name}</span>
+                <span>Автор: {item.authors.map((item) => `${item.name} `).join(', ')}</span>
                 <span>Кол-во страниц: {item.pages}</span>
-                <span>Жанр: {item.genres.map((item) => `${item.name} `)}</span>
-                <button className="underline justify-center">Убрать</button>
+                <span>Жанр: {item.genres.map((item) => `${item.name}`).join(', ')}</span>
+                <button onClick={() => { handleRemoveFromCart(item.id) }} className="link hover:text-red-400 hover:border-red-400 justify-center">Убрать</button>
               </div>
               <div className="flex items-center">
                 <Button className="shrink-0" type="outline">-</Button>
