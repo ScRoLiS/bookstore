@@ -43,7 +43,16 @@ const Book = () => {
       {book.map((item, index) => {
         return (
           <div key={index} className="bg-white rounded-md p-4 shadow-md flex gap-4">
-            <img src={item.image} alt={item.name} className="sticky top-20 rounded-md self-start" />
+            <div className="shrink-0">
+              <img src={item.image} alt={item.name} className="rounded-md " />
+              <div className="flex justify-between mt-5">
+                <span className="text-xl font-medium">Цена: {item.price} тг.</span>
+                {isInCart(id)
+                  ? <Button className="w-36" onHover="Убрать" onClick={handleRemoveFromCart} type="remove">В корзине</Button>
+                  : <Button className="w-36" onClick={handleAddToCart} type="primary">В корзину</Button>
+                }
+              </div>
+            </div>
             <div className="flex flex-col gap-4">
               <h1 className="font-medium text-4xl">{item.name}</h1>
               <div className="flex flex-col">
@@ -52,13 +61,6 @@ const Book = () => {
                 <span>Кол-во страниц: {item.pages}</span>
               </div>
               <p className="text-sm">{item.description}</p>
-              <div className="mt-auto flex flex-col gap-2">
-                <span className="text-xl font-medium">Цена: {item.price} тг.</span>
-                {isInCart(id)
-                  ? <Button className="w-40" onHover="Убрать" onClick={handleRemoveFromCart} type="remove">В корзине</Button>
-                  : <Button className="w-40" onClick={handleAddToCart} type="primary">В корзину</Button>
-                }
-              </div>
             </div>
           </div>
         )
