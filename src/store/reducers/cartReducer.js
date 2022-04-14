@@ -27,8 +27,7 @@ const cartReducer = (state = initialState, action) => {
   if (action.type === CartType.DECREMENT_COUNT) {
     const newCart = state.cart.map((item) => {
       if (item.id === action.payload) {
-        const count = item.count - 1
-        return { ...item, count: count < 1 ? 1 : count }
+        return { ...item, count: item.count - 1 }
       }
       return { ...item }
     })
