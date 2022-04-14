@@ -19,9 +19,14 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 shadow-md bg-white z-10">
       <div className="container flex justify-between items-center h-16 md:h-24">
-        <Link className="flex gap-2 items-center font-bold text-base md:text-2xl" to="/">
-          <BsBookHalf className="text-sky-400 mt-0.5 md:mt-1" />
-          <span>BOOK<span className="text-sky-400">STORE</span></span>
+        <Link className="flex flex-col" to="/">
+          <div className="flex gap-1 xl:gap-2 items-center font-bold text-base md:text-2xl">
+            <BsBookHalf className="text-sky-400 mt-0.5 md:mt-1" />
+            <span>BOOK<span className="text-sky-400">STORE</span></span>
+          </div>
+          <div className="font-light text-sm">
+            BookStore - магазин твоей мечты!
+          </div>
         </Link>
         <ul className="list-none flex gap-2">
           {menu.map((item, index) => {

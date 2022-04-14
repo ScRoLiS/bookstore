@@ -38,7 +38,7 @@ const Cart = () => {
       <ul className="flex flex-col gap-4 list-none">
         {cart.map((item) => {
           return (
-            <li key={item.id} className="flex gap-4 p-4">
+            <li key={item.id} className="flex gap-4 p-4 shadow-sm rounded-md">
               <img src={item.image} alt={item.name} className="rounded-md h-40" />
               <div className="flex flex-col items-start justify-between w-96">
                 <span className="whitespace-nowrap w-full overflow-hidden overflow-ellipsis text-lg font-medium">{item.name}</span>

@@ -11,6 +11,10 @@
     @apply border-dotted border-b-2 border-black hover:text-gray-300 hover:border-gray-300;
   }
 
+  .link-footer {
+    @apply link text-sm border-none flex gap-1 items-center;
+  }
+
   .nav-link {
     @apply flex flex-row gap-2 md:gap-0 md:flex-col items-center p-2 rounded-md hover:bg-sky-200 relative;
 
