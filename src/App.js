@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Navbar } from './components';
+import { Footer, Navbar } from './components';
 import { Home, Login, Cart, PageNotFound, Book } from './routes';
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }
