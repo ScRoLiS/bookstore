@@ -48,9 +48,9 @@ const Cart = () => {
                 <button onClick={() => { handleRemoveFromCart(item.id) }} className="link hover:text-red-400 hover:border-red-400 justify-center">Убрать</button>
               </div>
               <div className="flex shrink-0 gap-2 items-center">
-                <Button type="outline" onClick={() => { handleDecrementCount(item.id) }}>-</Button>
+                <Button type="ghost" disabled={item.count <= 1 ? true : false } onClick={() => { handleDecrementCount(item.id) }}>-</Button>
                 <span>{item.count}</span>
-                <Button type="outline" onClick={() => { handleIncrementCount(item.id) }}>+</Button>
+                <Button type="ghost" onClick={() => { handleIncrementCount(item.id) }}>+</Button>
               </div>
               <div className="font-bold text-2xl ml-auto self-center">
                 {item.price * item.count} тг.
