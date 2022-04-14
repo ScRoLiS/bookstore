@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Button } from '../components'
+import { Button, CartFooter } from '../components'
 import { decrementCount, incrementCount, removeFromCart } from '../store/actions/cartAction'
 
 const Cart = () => {
@@ -19,7 +19,7 @@ const Cart = () => {
   const handleDecrementCount = (id) => {
     dispatch(decrementCount(id))
   }
-  
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -47,18 +47,21 @@ const Cart = () => {
                 <span>Жанр: {item.genres.map((item) => `${item.name}`).join(', ')}</span>
                 <button onClick={() => { handleRemoveFromCart(item.id) }} className="link hover:text-red-400 hover:border-red-400 justify-center">Убрать</button>
               </div>
-              <div className="flex shrink-0 gap-2 items-center">
-                <Button type="ghost" disabled={item.count <= 1 ? true : false } onClick={() => { handleDecrementCount(item.id) }}>-</Button>
-                <span>{item.count}</span>
-                <Button type="ghost" onClick={() => { handleIncrementCount(item.id) }}>+</Button>
-              </div>
-              <div className="font-bold text-2xl ml-auto self-center">
-                {item.price * item.count} тг.
+              <div className="flex xl:grow gap-2 sm:flex-col sm:justify-center sm:items-center xl:flex-row ml-auto">
+                <div className="flex shrink-0 gap-2 xl:ml-32 items-center">
+                  <Button type="ghost" disabled={item.count <= 1 ? true : false} onClick={() => { handleDecrementCount(item.id) }}>-</Button>
+                  <span>{item.count}</span>
+                  <Button type="ghost" onClick={() => { handleIncrementCount(item.id) }}>+</Button>
+                </div>
+                <div className="font-semibold text-2xl lg:ml-auto self-center relative left-1">
+                  {item.price * item.count} тг.
+                </div>
               </div>
             </li>
           )
         })}
       </ul>
+      <CartFooter items={cart} />
     </div>
   )
 }
