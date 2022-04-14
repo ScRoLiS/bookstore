@@ -72,23 +72,23 @@ const footerLinks = [
 const Footer = () => {
   return (
     <div className="bg-white p-4">
-      <div className="container flex gap-4">
+      <div className="container items-center md:items-start md:justify-between flex gap-4 flex-col md:flex-row">
         <div className="flex flex-col items-center w-56 shrink-0">
           <div className="flex gap-1 items-center font-bold text-base md:text-md">
             <BsBookHalf className="text-sky-400 mt-0.5 md:mt-0.5" />
             <span>BOOK<span className="text-sky-400">STORE</span></span>
           </div>
-          <div className="font-light text-sm">
+          <div className="font-light text-sm text-center md:text-left mt-2 md:mt-0">
             BookStore - проект, после которого я надеюсь найти работу получше!
           </div>
         </div>
-        <div className="grid grid-cols-2 ml-auto w-auto gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 w-auto gap-10">
           {footerLinks.map((item, index) => {
             return (
-              <div className="flex flex-col gap-2">
+              <div key={index} className="flex flex-col items-center md:items-start gap-2">
                 <span className="font-medium">{item.title}</span>
                 {item.links.map((link, index) => {
-                  return <a href={link.to} className="link-footer">{link.icon} {link.label}</a>
+                  return <a href={link.to} key={index} className="link-footer">{link.icon} {link.label}</a>
                 })}
               </div>
             )

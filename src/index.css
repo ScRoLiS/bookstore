@@ -12,7 +12,7 @@
   }
 
   .link-footer {
-    @apply link text-sm border-none flex gap-1 items-center;
+    @apply link text-sm border-none flex gap-1 items-center text-gray-400 hover:text-gray-700;
   }
 
   .nav-link {

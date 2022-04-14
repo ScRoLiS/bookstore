@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Button from './Button'
 import { Link, NavLink } from 'react-router-dom'
 import { BsBookHalf, BsCart3 } from 'react-icons/bs'
 import { AiOutlineUser } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
+import { GiHamburgerMenu } from 'react-icons/gi'
 
 const menu = [
   { to: '/', label: 'Магазин', icon: <BsBookHalf className="text-xl" /> },
@@ -10,6 +12,7 @@ const menu = [
 ]
 
 const Navbar = () => {
+  const [showMenu, setShowMenu] = useState(false)
   const { cart } = useSelector(state => state.cart)
 
   const linkStyleSwich = ({ isActive }) => {
@@ -24,11 +27,11 @@ const Navbar = () => {
             <BsBookHalf className="text-sky-400 mt-0.5 md:mt-1" />
             <span>BOOK<span className="text-sky-400">STORE</span></span>
           </div>
-          <div className="font-light text-sm">
+          <div className="hidden md:block font-light text-sm">
             BookStore - магазин твоей мечты!
           </div>
         </Link>
-        <ul className="list-none flex gap-2">
+        <ul className="list-none hidden md:flex gap-2">
           {menu.map((item, index) => {
             return (
               <li key={index} >
@@ -49,6 +52,7 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
+        <Button className="block md:hidden" type="outline" ><GiHamburgerMenu /></Button>
       </div>
     </nav>
   )
