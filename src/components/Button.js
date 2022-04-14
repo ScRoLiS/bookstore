@@ -2,21 +2,24 @@ import React from 'react'
 import { useHover } from '../hooks/useHover'
 
 const Button = (props) => {
-  const { type = '' } = props.type
-
+  const className = props.className ? props.className : ''
   const [ref, hover] = useHover()
 
   const buttonType = (type) => {
-    if (type === 'outline')
+    if (type === 'outline') {
       return 'button-outline'
-    if (type === 'remove')
+    }
+    else if (type === 'remove') {
       return 'button-remove'
-    if (type === 'ghost')
+    }
+    else if (type === 'ghost') {
       return 'button-ghost'
+    }
+    else return ''
   }
 
   return (
-    <button ref={ref} disabled={props.disabled} onClick={props.onClick} className={`button ${buttonType(props.type)} ${props.className}`}>
+    <button ref={ref} disabled={props.disabled} onClick={props.onClick} className={`button ${buttonType(props.type)} ${className}`}>
       {props.onHover && hover ? props.onHover : props.children}
     </button>
   )
