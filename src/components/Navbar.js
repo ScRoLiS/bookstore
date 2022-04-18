@@ -33,7 +33,7 @@ const Navbar = () => {
     return (
       <nav className="fixed z-10 overflow-y-auto min-h-screen min-w-screen left-0 top-0 right-0 bottom-0 bg-white">
         <div className="container min-h-full p-2 flex flex-col gap-4">
-          <Button onClick={toggleMenu} className="self-end mt-2" type="outline" ><MdOutlineClose className="text-lg" /></Button>
+          {/* <Button onClick={toggleMenu} className="self-end mt-2" type="outline" ><MdOutlineClose className="text-lg" /></Button> */}
           <ul className="list-none grow flex-col flex gap-2">
             {menu.map((item, index) => {
               return (
