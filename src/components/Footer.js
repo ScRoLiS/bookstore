@@ -76,42 +76,42 @@ const footerLinks = [
     links: [
       {
         label: 'Доставка',
-        to: 'https://strapi.io/',
+        to: '/placeholder',
         icon: <MdDeliveryDining />
       },
       {
         label: 'Возврат товара',
-        to: 'https://heroku.com/',
+        to: '/placeholder',
         icon: <AiOutlineGift />
       },
       {
         label: 'Как сделать заказ',
-        to: '#',
+        to: '/placeholder',
         icon: <MdOutlineLiveHelp />
       },
       {
         label: 'Способы оплаты',
-        to: 'https://redux.js.org/',
+        to: '/placeholder',
         icon: <AiFillCreditCard />
       },
       {
         label: 'Правила продажи',
-        to: 'https://reactrouter.com/',
+        to: '/placeholder',
         icon: <MdOutlineSell />
       },
       {
         label: 'Публичная оферта',
-        to: 'https://reactrouter.com/',
+        to: '/placeholder',
         icon: <HiOutlineDocumentText />
       },
       {
         label: 'Вопросы и ответы',
-        to: 'https://reactrouter.com/',
+        to: '/placeholder',
         icon: <RiQuestionAnswerLine />
       },
       {
         label: 'Возврат денежных средств',
-        to: 'https://cloudinary.com/',
+        to: '/placeholder',
         icon: <GiReceiveMoney />
       },
     ]
