@@ -45,7 +45,7 @@ const Book = () => {
         return (
           <div key={index} className="bg-white rounded-md p-6 shadow-md grow flex flex-col sm:flex-row gap-4">
             <div className="shrink-0 flex flex-col items-center md:items-start lg:justify-between">
-              <img src={item.image} alt={item.name} className="rounded-md w-40 lg:w-auto" />
+              <img src={item.image} alt={item.name} className="rounded-md w-40 md:w-64 lg:w-auto" />
               <div className="flex flex-col gap-2 w-full items-center lg:flex-row justify-between mt-5">
                 <span className="text-xl font-medium">Цена: {item.price} тг.</span>
                 {isInCart(id)
