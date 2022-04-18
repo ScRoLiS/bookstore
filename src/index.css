@@ -16,7 +16,7 @@
   }
 
   .nav-link {
-    @apply flex flex-row gap-2 md:gap-0 md:flex-col items-center p-2 rounded-md hover:bg-sky-200 relative;
+    @apply flex gap-0 flex-col items-center p-2 rounded-md hover:bg-sky-200 relative;
 
     min-width: 90px;
   }
@@ -55,8 +55,12 @@
     @apply bg-slate-100;
   }
 
-  .app {
-    min-height: 100vh;
-    @apply flex flex-col
+  .cart-link {
+    @apply border border-sky-400 p-1 text-sky-400 nav-link ml-auto sm:flex md:hidden hover:text-white hover:bg-sky-400;
+    min-width: 0;
+  }
+
+  .cart-link-active {
+    @apply cart-link bg-sky-400 text-white
   }
 }

@@ -3,6 +3,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    minWidth: {
+      'screen': '100vw'
+    },
     container: {
       center: true
     },

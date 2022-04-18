@@ -4,7 +4,7 @@ import { Home, Login, Cart, PageNotFound, Book } from './routes';
 
 function App() {
   return (
-    <div className="app">
+    <div className="flex flex-col min-h-screen">
       <Navbar />
       <div className="container flex flex-col flex-grow mt-4 mb-4">
         <Routes>
