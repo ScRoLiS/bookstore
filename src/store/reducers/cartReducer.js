@@ -1,16 +1,22 @@
 import { CartType } from "../types/cartTypes"
 
+const localStorageCart = localStorage.getItem('cart')
+
 const initialState = {
-  cart: []
+  cart: localStorageCart?.length ? JSON.parse(localStorageCart) : []
 }
 
 const cartReducer = (state = initialState, action) => {
   if (action.type === CartType.ADD_TO_CART) {
-    return { cart: [...state.cart, { ...action.payload, count: 1 }] }
+    const newCart = { cart: [...state.cart, { ...action.payload, count: 1 }] }
+    localStorage.setItem('cart', JSON.stringify(newCart.cart))
+    return newCart
   }
 
   if (action.type === CartType.REMOVE_FROM_CART) {
     const newCart = state.cart.filter((item) => item.id !== action.payload)
+    localStorage.setItem('cart', JSON.stringify(newCart))
+
     return { cart: newCart }
   }
 
@@ -20,6 +26,8 @@ const cartReducer = (state = initialState, action) => {
         return { ...item, count: item.count + 1 }
       return { ...item }
     })
+
+    localStorage.setItem('cart', JSON.stringify(newCart))
 
     return { cart: newCart }
   }
@@ -31,6 +39,8 @@ const cartReducer = (state = initialState, action) => {
       }
       return { ...item }
     })
+
+    localStorage.setItem('cart', JSON.stringify(newCart))
 
     return { cart: newCart }
   }
