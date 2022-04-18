@@ -7,19 +7,22 @@ const Button = (props) => {
 
   const buttonType = (type) => {
     if (type === 'outline') {
-      return 'button-outline'
+      return 'button button-outline'
     }
     else if (type === 'remove') {
-      return 'button-remove'
+      return 'button button-remove'
     }
     else if (type === 'ghost') {
-      return 'button-ghost'
+      return 'button button-ghost'
     }
-    else return ''
+    else if (type === 'link') {
+      return 'link'
+    }
+    else return 'button'
   }
 
   return (
-    <button ref={ref} disabled={props.disabled} onClick={props.onClick} className={`button ${buttonType(props.type)} ${className}`}>
+    <button ref={ref} disabled={props.disabled} onClick={props.onClick} className={`${buttonType(props.type)} ${className}`}>
       {props.onHover && hover ? props.onHover : props.children}
     </button>
   )
