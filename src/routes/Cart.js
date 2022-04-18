@@ -34,28 +34,33 @@ const Cart = () => {
   }
 
   return (
-    <div className="md:p-4 rounded-md shadow-md bg-white">
-      <ul className="flex flex-col gap-4 list-none">
+    <div className="p-4 rounded-md shadow-md bg-white">
+      <ul className="flex flex-col gap-6 list-none">
         {cart.map((item) => {
           return (
-            <li key={item.id} className="grid grid-cols-3 gap-2 p-4 shadow-sm rounded-md">
-              <div className="flex items-start col-span-2 gap-2">
-                <img src={item.image} alt={item.name} className="rounded-md h-28 md:h-40" />
-                <div className="flex flex-col items-start h-full overflow-hidden overflow-ellipsis justify-between text-sm md:text-base">
-                  <span className="whitespace-nowrap w-full overflow-hidden overflow-ellipsis md:text-lg font-medium">{item.name}</span>
-                  <span>Автор: {item.authors.map((item) => `${item.name} `).join(', ')}</span>
-                  <span>Кол-во страниц: {item.pages}</span>
-                  <span>Жанр: {item.genres.map((item) => `${item.name}`).join(', ')}</span>
-                  <button onClick={() => { handleRemoveFromCart(item.id) }} className="link hover:text-red-400 hover:border-red-400 justify-center">Убрать</button>
+            <li key={item.id} className="grid grid-cols-1 sm:grid-cols-4 p-2 gap-2 rounded-md">
+              <div className="flex items-start sm:col-span-3 gap-2">
+                <img src={item.image} alt={item.name} className="rounded-md h-28 md:h-36" />
+                <div className="flex flex-col md:gap-2 items-start h-full overflow-hidden overflow-ellipsis justify-between md:justify-start text-sm">
+                  <span className="whitespace-nowrap w-full overflow-hidden overflow-ellipsis text-base font-medium">{item.name}</span>
+                  <div className="flex flex-col md:gap-1">
+                    <span>Автор: {item.authors.map((item) => `${item.name} `).join(', ')}</span>
+                    <span>Кол-во страниц: {item.pages}</span>
+                    <span>Жанр: {item.genres.map((item) => `${item.name}`).join(', ')}</span>
+                  </div>
+                  <div className="text-sm md:mt-auto">
+                    <Link to={`/book/${item.id}`} className="link mr-3 border-none text-sky-600 hover:text-sky-200 hover:border-none">Подробнее</Link>
+                    <Button type="link" onClick={() => { handleRemoveFromCart(item.id) }} className="border-none text-red-600 hover:text-red-200 hover:border-none">Убрать</Button>
+                  </div>
                 </div>
               </div>
-              <div className="flex gap-2 flex-col justify-center items-center ml-auto lg:ml-0 lg:flex-row">
-                <div className="flex shrink-0 relative gap-7 items-center">
+              <div className="flex gap-2 sm:flex-col sm:justify-center items-center sm:ml-auto lg:ml-0 lg:flex-row">
+                <div className="flex shrink-0 relative gap-5 md:gap-7 items-center">
                   <Button type="ghost" disabled={item.count <= 1 ? true : false} onClick={() => { handleDecrementCount(item.id) }}>-</Button>
                   <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">{item.count}</span>
                   <Button type="ghost" onClick={() => { handleIncrementCount(item.id) }}>+</Button>
                 </div>
-                <div className="font-semibold text-base md:text-2xl lg:ml-auto self-center relative left-1">
+                <div className="font-semibold text-base md:text-xl lg:ml-auto self-center relative sm:left-1">
                   {item.price * item.count} тг.
                 </div>
               </div>
