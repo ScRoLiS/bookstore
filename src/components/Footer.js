@@ -11,6 +11,32 @@ import { RiQuestionAnswerLine } from 'react-icons/ri'
 
 const footerLinks = [
   {
+    title: 'Мы в соцсетях',
+    links: [
+      {
+        label: 'Facebook',
+        to: 'https://facebook.com/',
+        icon: <FaFacebookSquare />
+      },
+      {
+        label: 'YouTube',
+        to: 'https://youtube.com/',
+        icon: <AiOutlineYoutube />
+      }
+      ,
+      {
+        label: 'Instagram',
+        to: 'https://instagram.com/',
+        icon: <AiOutlineInstagram />
+      },
+      {
+        label: 'Одноклассники',
+        to: 'https://ok.ru/',
+        icon: <FaOdnoklassniki />
+      },
+    ]
+  },
+  {
     title: 'Технологии',
     links: [
       {
@@ -43,32 +69,6 @@ const footerLinks = [
         to: 'https://reactrouter.com/',
         icon: <SiReactrouter />
       }
-    ]
-  },
-  {
-    title: 'Мы в соцсетях',
-    links: [
-      {
-        label: 'Facebook',
-        to: 'https://facebook.com/',
-        icon: <FaFacebookSquare />
-      },
-      {
-        label: 'YouTube',
-        to: 'https://youtube.com/',
-        icon: <AiOutlineYoutube />
-      }
-      ,
-      {
-        label: 'Instagram',
-        to: 'https://instagram.com/',
-        icon: <AiOutlineInstagram />
-      },
-      {
-        label: 'Одноклассники',
-        to: 'https://ok.ru/',
-        icon: <FaOdnoklassniki />
-      },
     ]
   },
   {
@@ -120,7 +120,7 @@ const footerLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-white p-4">
+    <footer className="bg-white py-6">
       <div className="container items-center md:items-start flex gap-4 flex-col md:flex-row">
         <div className="flex flex-col items-center w-56 shrink-0">
           <div className="flex gap-1 items-center font-bold text-base md:text-md">
