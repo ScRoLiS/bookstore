@@ -29,6 +29,7 @@ const Book = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     API.getBook(id)
       .then((book) => {
         setBook([book])
