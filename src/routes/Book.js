@@ -40,23 +40,23 @@ const Book = () => {
   }, [])
 
   return (
-    <div className="flex-grow flex flex-col">
+    <div className="flex grow flex-col">
       {book.map((item, index) => {
         return (
-          <div key={index} className="bg-white rounded-md p-4 shadow-md flex gap-4">
-            <div className="shrink-0">
-              <img src={item.image} alt={item.name} className="rounded-md " />
-              <div className="flex justify-between mt-5">
+          <div key={index} className="bg-white rounded-md p-6 shadow-md grow flex flex-col sm:flex-row gap-4">
+            <div className="shrink-0 flex flex-col items-center md:items-start lg:justify-between">
+              <img src={item.image} alt={item.name} className="rounded-md w-40 lg:w-auto" />
+              <div className="flex flex-col gap-2 w-full items-center lg:flex-row justify-between mt-5">
                 <span className="text-xl font-medium">Цена: {item.price} тг.</span>
                 {isInCart(id)
-                  ? <Button className="w-36" onHover="Убрать" onClick={handleRemoveFromCart} type="remove">В корзине</Button>
-                  : <Button className="w-36" onClick={handleAddToCart} type="primary">В корзину</Button>
+                  ? <Button className="w-full lg:w-28" onHover="Убрать" onClick={handleRemoveFromCart} type="remove">В корзине</Button>
+                  : <Button className="w-full lg:w-28" onClick={handleAddToCart} type="primary">В корзину</Button>
                 }
               </div>
             </div>
-            <div className="flex flex-col gap-4">
-              <h1 className="font-medium text-4xl">{item.name}</h1>
-              <div className="flex flex-col">
+            <div className="flex flex-col gap-2 lg:gap-4">
+              <h1 className="font-medium text-lg md:text-2xl lg:text-4xl">{item.name}</h1>
+              <div className="flex flex-col text-sm md:text-base">
                 <span>Автор: {item.authors.map((item) => `${item.name} `).join(', ')}</span>
                 <span>Жанр: {item.genres.map((item) => `${item.name} `).join(', ')}</span>
                 <span>Кол-во страниц: {item.pages}</span>
