@@ -21,7 +21,7 @@ const menu = [
 ]
 
 const Profile = () => {
-  const isAuth = true
+  const isAuth = false
 
   const switchLinkStyle = ({ isActive }) => {
     return isActive ? 'link-profile-active' : 'link-profile'
@@ -32,11 +32,11 @@ const Profile = () => {
 
   return (
     <div className="bg-white rounded-md shadow-md p-4 grow">
-      <div className="flex gap-2">
+      <div className="flex gap-4">
         <div className="flex flex-col w-52 gap-2">
           {menu.map((item, index) => <NavLink className={switchLinkStyle} to={item.to} key={index}>{item.label}</NavLink>)}
         </div>
-        <div>
+        <div className="p-2">
           <Outlet />
         </div>
       </div>
