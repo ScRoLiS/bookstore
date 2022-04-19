@@ -22,4 +22,4 @@ const useHover = () => {
   return [ref, value];
 }
 
-export { useHover }
+export default useHover
