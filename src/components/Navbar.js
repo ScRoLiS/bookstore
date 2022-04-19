@@ -9,7 +9,7 @@ import { MdOutlineClose } from 'react-icons/md';
 
 const menu = [
   { to: '/', label: 'Магазин', icon: <BsBookHalf className="text-xl" /> },
-  { to: '/login', label: 'Вход', icon: <AiOutlineUser className="text-xl" /> }
+  { to: '/user', label: 'Вход', icon: <AiOutlineUser className="text-xl" /> }
 ]
 
 const Navbar = () => {
