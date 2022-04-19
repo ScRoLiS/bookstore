@@ -51,6 +51,14 @@
     line-height: 0px;
   }
 
+  .input {
+    @apply p-2 border-b-2 border-sky-200 text-sm
+  }
+
+  .input:focus {
+    @apply outline-none
+  }
+
   body {
     @apply bg-slate-100;
   }
