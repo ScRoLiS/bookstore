@@ -25,6 +25,19 @@
     @apply nav-link text-white bg-sky-400 hover:bg-sky-400;
   }
 
+  .link-profile {
+    @apply rounded-l-md p-2 bg-gradient-to-r hover:from-sky-200 hover:to-white
+  }
+
+  .link-profile-active {
+    @apply relative text-white font-medium rounded-l-md p-2 bg-gradient-to-r from-sky-400 via-sky-400 to-white hover:bg-sky-400
+  }
+
+  .link-profile-active::before {
+    @apply w-2 h-full bg-white absolute top-0 -right-2;
+    content: '';
+  }
+
   .button {
     @apply flex items-center justify-center text-xs font-medium shrink-0 text-white p-2 bg-sky-400 rounded-md hover:bg-sky-300;
   }
