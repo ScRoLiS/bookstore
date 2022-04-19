@@ -26,9 +26,11 @@ const Cart = () => {
 
   if (!cart.length) {
     return (
-      <div className="p-4 text-center grow rounded-md shadow-md bg-white justify-center items-center flex flex-col">
-        <span className="font-medium text-lg md:text-2xl">Корзина пуста!</span>
-        <span className="text-sm md:text-base">Перейдите в <Link to="/" className="link">Магазин</Link> для совершения покупок</span>
+      <div className="flex flex-col items-center justify-center grow">
+        <div className="p-10 text-center rounded-md shadow-md bg-white justify-center items-center flex flex-col">
+          <span className="font-medium mb-2 text-lg md:text-2xl">Корзина пуста!</span>
+          <span className="text-sm md:text-base">Перейдите в <Link to="/" className="link">Магазин</Link> для совершения покупок</span>
+        </div>
       </div>
     )
   }

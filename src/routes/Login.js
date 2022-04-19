@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Login = () => {
   return (
     <div className="grow flex items-center justify-center">
-      <div className="bg-white rounded-md shadow-md p-4 flex flex-col items-center gap-2 w-96">
+      <div className="bg-white rounded-md shadow-md p-8  flex flex-col items-center gap-2 w-96">
         <span className="text-xl">Войти</span>
         <Input placeholder="Email" type="email" />
         <Input placeholder="Пароль" type="password" />
