@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Navbar } from './components';
-import { Home, Login, Cart, PageNotFound, Book } from './routes';
+import { Home, Login, Cart, PageNotFound, Book, Registration, Profile } from './routes';
 
 function App() {
   return (
@@ -9,8 +9,12 @@ function App() {
       <div className="container flex flex-col flex-grow mt-4 mb-4">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/user">
+            <Route index element={<Profile />} />
+            <Route path="login" element={<Login />} />
+            <Route path="registration" element={<Registration />} />
+          </Route>
           <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/book/:id" element={<Book />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
