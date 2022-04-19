@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHover } from '../hooks/useHover'
+import { useHover } from '../hooks'
 
 const Button = (props) => {
   const className = props.className ? props.className : ''
