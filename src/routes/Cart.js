@@ -42,7 +42,7 @@ const Cart = () => {
           return (
             <li key={item.id} className="grid grid-cols-1 sm:grid-cols-4 p-2 gap-2 rounded-md">
               <div className="flex items-start sm:col-span-3 gap-2">
-                <img src={item.image} alt={item.name} className="rounded-md h-28 md:h-36" />
+                <img src={item.image.url} alt={item.name} className="rounded-md h-28 md:h-36" />
                 <div className="flex flex-col md:gap-2 items-start h-full overflow-hidden overflow-ellipsis justify-between md:justify-start text-sm">
                   <span className="whitespace-nowrap w-full overflow-hidden overflow-ellipsis text-base font-medium">{item.name}</span>
                   <div className="flex flex-col md:gap-1">
