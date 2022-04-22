@@ -1,7 +1,7 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { Button, Input } from '../components'
+import { Button, Input, Spinner } from '../components'
 import { useAuth, useInput } from '../hooks'
 import API from '../services/api'
 import { login } from '../store/actions/userActions'
@@ -10,16 +10,23 @@ const Registration = () => {
   const auth = useAuth()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [email, handleEmail] = useInput('username@mail.com')
-  const [username, handleUsername] = useInput('username')
+  const [isLoading, setLoading] = useState(false)
+  const { cart } = useSelector(state => state.cart)
+  const [email, handleEmail] = useInput('scrolis@mail.com')
+  const [username, handleUsername] = useInput('scrolis')
   const [password, handlePassword] = useInput('123456')
   const [passwordRepeat, handlePasswordRepeat] = useInput('123456')
 
   const handleRegister = (e) => {
+    setLoading(true)
     API.register(email, username, password)
       .then((data) => {
         dispatch(login(data))
+
         navigate('/user/profile')
+      })
+      .finally(() => {
+        setLoading(false)
       })
   }
 
@@ -35,7 +42,7 @@ const Registration = () => {
         <Input value={username} onChange={handleUsername} placeholder="Имя пользователя" type="text" />
         <Input value={password} onChange={handlePassword} placeholder="Пароль" type="password" />
         <Input value={passwordRepeat} onChange={handlePasswordRepeat} placeholder="Повторите пароль" type="password" />
-        <Button onClick={handleRegister} className="w-full mt-2">Зарегистрироваться</Button>
+        <Button disabled={isLoading} onClick={handleRegister} className="w-full mt-2">{isLoading ? <Spinner type="small" /> : 'Зарегистрироваться'}</Button>
         <div className="text-sm flex gap-1 flex-wrap justify-center">
           <span>Есть аккаунт?</span> <Link className="link" to="/user/login">Войти</Link>
         </div>
