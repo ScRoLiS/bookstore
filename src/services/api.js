@@ -1,7 +1,7 @@
 export default class API {
 
-  // static baseUrl = 'https://bookstore-api-server.herokuapp.com'
-  static baseUrl = 'http://localhost:1337'
+  static baseUrl = 'https://bookstore-api-server.herokuapp.com'
+  // static baseUrl = 'http://localhost:1337'
 
 
   static getBooks = async () => {
@@ -34,6 +34,9 @@ export default class API {
 
     const data = await req.json()
 
+    if (req.status !== 200)
+      throw new Error(data.error.message)
+
     return data
   }
 
@@ -49,6 +52,22 @@ export default class API {
 
     const data = await req.json()
 
+    if (req.status !== 200)
+      throw new Error(data.error.message)
+
     return data
+  }
+
+  static setCartOnServer = async (cart) => {
+    const req = await fetch(this.baseUrl + `/api/users/me`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(cart)
+    })
+    const { data } = await req.json()
+
+    return { ...data, id: parseInt(data.id) }
   }
 }
