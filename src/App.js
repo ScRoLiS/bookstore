@@ -30,8 +30,8 @@ function App() {
       </div>
       <Footer />
       <div className="flex flex-col gap-2 fixed bottom-2 z-30 left-1/2 -translate-x-1/2">
-        {messages.map((item, index) => {
-          return <Message key={item.id} id={item.id} type={item.type} message={item.message} />
+        {messages.map((item) => {
+          return <Message key={item.id} {...item} />
         })}
       </div>
     </div>
