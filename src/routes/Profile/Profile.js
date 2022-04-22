@@ -12,7 +12,7 @@ const menu = [
   },
   {
     to: '/user/cards',
-    label: 'Карты'
+    label: 'Платежные карты'
   },
   {
     to: '/user/purchases',
@@ -35,7 +35,7 @@ const Profile = () => {
 
   const handleLogout = () => {
     dispatch(logout())
-    navigate('/')
+    navigate('/user/login')
   }
 
   if (!isAuth)
