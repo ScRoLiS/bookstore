@@ -1,9 +1,12 @@
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { Footer, Navbar } from './components';
+import { Footer, Message, Navbar } from './components';
 import { Home, Login, Cart, PageNotFound, Book, Registration } from './routes';
 import { Adresses, Cards, Purchases, UserProfile, Profile } from './routes/Profile';
 
 function App() {
+  const { messages } = useSelector(state => state.messages)
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -26,6 +29,11 @@ function App() {
         </Routes>
       </div>
       <Footer />
+      <div className="flex flex-col gap-2 fixed bottom-2 z-30 left-1/2 -translate-x-1/2">
+        {messages.map((item, index) => {
+          return <Message key={item.id} id={item.id} type={item.type} message={item.message} />
+        })}
+      </div>
     </div>
   );
 }
