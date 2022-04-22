@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Button, Input, Spinner } from '../components'
 import { useAuth, useInput } from '../hooks'
 import API from '../services/api'
+import { addMessage } from '../store/actions/messageActions'
 import { login } from '../store/actions/userActions'
 
 const Registration = () => {
@@ -23,6 +24,16 @@ const Registration = () => {
       .then((data) => {
         dispatch(login(data))
         navigate('/user/profile')
+      })
+      .catch(({ message }) => {
+        console.log(message);
+        if (message === 'Please provide a valid email address' || message === 'email must be a valid email') {
+          dispatch(addMessage(Math.random(), 'error', 'Введен неправильный email'))
+        } else if (message === 'Email is already taken') {
+          dispatch(addMessage(Math.random(), 'error', 'Такой email уже занят'))
+        } else if (message === 'An error occurred during account creation') {
+          dispatch(addMessage(Math.random(), 'error', 'Такое имя пользователя занято'))
+        }
       })
       .finally(() => {
         setLoading(false)
