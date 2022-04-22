@@ -1,5 +1,9 @@
 import React from 'react'
-import { Navigate, NavLink, Outlet, } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Navigate, NavLink, Outlet, useNavigate, } from 'react-router-dom'
+import { Button } from '../../components'
+import { useAuth } from '../../hooks'
+import { logout } from '../../store/actions/userActions'
 
 const menu = [
   {
@@ -21,10 +25,17 @@ const menu = [
 ]
 
 const Profile = () => {
-  const isAuth = false
+  const isAuth = useAuth()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const switchLinkStyle = ({ isActive }) => {
     return isActive ? 'link-profile-active' : 'link-profile'
+  }
+
+  const handleLogout = () => {
+    dispatch(logout())
+    navigate('/')
   }
 
   if (!isAuth)
@@ -35,6 +46,7 @@ const Profile = () => {
       <div className="flex gap-4">
         <div className="flex flex-col w-52 gap-2">
           {menu.map((item, index) => <NavLink className={switchLinkStyle} to={item.to} key={index}>{item.label}</NavLink>)}
+          <Button type="ghost" className="w-full" onClick={handleLogout}>Выход</Button>
         </div>
         <div className="p-2">
           <Outlet />
