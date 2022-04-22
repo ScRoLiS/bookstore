@@ -1,8 +1,11 @@
 import React from 'react'
+import { ProfilePage } from '../../containers'
 
 const Purchases = () => {
   return (
-    <div>Покупки</div>
+    <ProfilePage title="Покупки">
+
+    </ProfilePage>
   )
 }
 
