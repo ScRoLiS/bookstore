@@ -89,11 +89,23 @@ border-color: transparent #ffffff transparent transparent;
   }
 
   .cart-link {
-    @apply border border-sky-400 p-1 text-sky-400 nav-link ml-auto sm:flex md:hidden hover:text-white hover:bg-sky-400;
-    min-width: 0;
+    @apply border border-sky-400 p-1 min-w-[0px] text-sky-400 nav-link ml-auto sm:flex md:hidden hover:text-white hover:bg-sky-400;
   }
 
   .cart-link-active {
-    @apply cart-link bg-sky-400 text-white
+    @apply cart-link bg-sky-400 text-white;
+  }
+
+  .message {
+    @apply p-4 text-center text-white shadow-md rounded-md flex items-center gap-2;
+  }
+
+  .message-notify {
+    @apply message bg-green-300;
+  }
+
+
+  .message-error {
+    @apply message bg-red-300;
   }
 }
