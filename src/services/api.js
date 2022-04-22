@@ -57,17 +57,4 @@ export default class API {
 
     return data
   }
-
-  static setCartOnServer = async (cart) => {
-    const req = await fetch(this.baseUrl + `/api/users/me`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(cart)
-    })
-    const { data } = await req.json()
-
-    return { ...data, id: parseInt(data.id) }
-  }
 }
