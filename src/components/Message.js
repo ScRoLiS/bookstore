@@ -5,6 +5,8 @@ import { removeMessage } from '../store/actions/messageActions'
 const Message = ({ id, type, message }) => {
 
   const dispatch = useDispatch()
+  const className = `message-${type}`
+  console.log(className);
 
   useEffect(() => {
     setTimeout(() => {
@@ -13,7 +15,7 @@ const Message = ({ id, type, message }) => {
   }, [])
 
   return (
-    <div className={`message-${type}`}>
+    <div className={className}>
       {message}
     </div>
   )

@@ -43,12 +43,12 @@ const Profile = () => {
 
   return (
     <div className="bg-white rounded-md shadow-md p-4 grow">
-      <div className="flex gap-4">
-        <div className="flex flex-col w-52 gap-2">
+      <div className="flex gap-8">
+        <div className="flex flex-col w-52 gap-2 shrink-0">
           {menu.map((item, index) => <NavLink className={switchLinkStyle} to={item.to} key={index}>{item.label}</NavLink>)}
           <Button type="ghost" className="w-full" onClick={handleLogout}>Выход</Button>
         </div>
-        <div className="p-2">
+        <div className="w-full">
           <Outlet />
         </div>
       </div>

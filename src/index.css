@@ -1,5 +1,7 @@
 @tailwind base;
+
 @tailwind components;
+
 @tailwind utilities;
 
 @layer components {
@@ -12,12 +14,11 @@
   }
 
   .link-footer {
-    @apply link text-sm border-none flex gap-1 items-center text-gray-400 hover:text-gray-700;
+    @apply link text-sm border-none flex gap-1 items-center text-gray-400 hover:text-sky-400;
   }
 
   .nav-link {
     @apply flex gap-0 flex-col items-center p-2 rounded-md hover:bg-sky-200 relative;
-
     min-width: 90px;
   }
 
@@ -26,11 +27,11 @@
   }
 
   .link-profile {
-    @apply rounded-md p-2 relative bg-sky-50 hover:bg-sky-100
+    @apply rounded-md p-2 relative bg-sky-50 hover:bg-sky-100;
   }
 
   .link-profile-active {
-    @apply relative text-white font-medium rounded-l-md p-2 bg-sky-400 hover:bg-sky-400
+    @apply relative text-white font-medium rounded-l-md p-2 bg-sky-400 hover:bg-sky-400;
   }
 
   .link-profile-active::before {
@@ -39,11 +40,10 @@
     right: 0;
     top: 0;
     width: 0;
-height: 0;
-border-style: solid;
-border-width: 20px 20px 20px 0;
-border-color: transparent #ffffff transparent transparent;
-
+    height: 0;
+    border-style: solid;
+    border-width: 20px 20px 20px 0;
+    border-color: transparent #ffffff transparent transparent;
   }
 
   .button {
@@ -51,7 +51,7 @@ border-color: transparent #ffffff transparent transparent;
   }
 
   .button:disabled {
-    @apply bg-sky-100
+    @apply bg-sky-100;
   }
 
   .button-outline {
@@ -77,11 +77,11 @@ border-color: transparent #ffffff transparent transparent;
   }
 
   .input {
-    @apply p-2 border-b-2 border-sky-200 text-sm
+    @apply p-2 border-b-2 border-sky-200 text-sm;
   }
 
   .input:focus {
-    @apply outline-none
+    @apply outline-none;
   }
 
   body {
@@ -103,7 +103,6 @@ border-color: transparent #ffffff transparent transparent;
   .message-notify {
     @apply message bg-green-300;
   }
-
 
   .message-error {
     @apply message bg-red-300;
