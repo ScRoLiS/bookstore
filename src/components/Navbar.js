@@ -6,13 +6,15 @@ import { AiOutlineUser } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { MdOutlineClose } from 'react-icons/md';
+import { useAuth } from '../hooks'
 
 const menu = [
   { to: '/', label: 'Магазин', icon: <BsBookHalf className="text-xl" /> },
-  { to: '/user', label: 'Вход', icon: <AiOutlineUser className="text-xl" /> }
+  { to: '/user', label: 'Вход', icon: <AiOutlineUser className="text-xl" />, auth: { label: 'Кабинет' } }
 ]
 
 const Navbar = () => {
+  const isAuth = useAuth()
   const [showMenu, setShowMenu] = useState(false)
   const { cart } = useSelector(state => state.cart)
 
@@ -40,7 +42,7 @@ const Navbar = () => {
                 <li key={index} onClick={toggleMenu}>
                   <NavLink to={item.to} className={linkStyleSwich}>
                     {item.icon}
-                    <span>{item.label}</span>
+                    <span>{isAuth && item.auth ? item.auth.label : item.label}</span>
                   </NavLink>
                 </li>
               )
@@ -79,7 +81,7 @@ const Navbar = () => {
               <li key={index} >
                 <NavLink to={item.to} className={linkStyleSwich}>
                   {item.icon}
-                  <span>{item.label}</span>
+                  <span>{isAuth && item.auth ? item.auth.label : item.label}</span>
                 </NavLink>
               </li>
             )
