@@ -1,7 +1,7 @@
 import { Button, Input, Spinner } from '../components'
 import React, { useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useAuth, useInput, useRequestError } from '../hooks'
+import { useAuth, useInput } from '../hooks'
 import { useDispatch } from 'react-redux'
 import API from '../services/api'
 import { login } from '../store/actions/userActions'
