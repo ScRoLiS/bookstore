@@ -1,28 +1,27 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Button, Input, Spinner } from '../components'
 import { useAuth, useInput } from '../hooks'
 import API from '../services/api'
 import { login } from '../store/actions/userActions'
 
 const Registration = () => {
-  const auth = useAuth()
+  const isAuth = useAuth()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [isLoading, setLoading] = useState(false)
   const { cart } = useSelector(state => state.cart)
-  const [email, handleEmail] = useInput('scrolis@mail.com')
-  const [username, handleUsername] = useInput('scrolis')
-  const [password, handlePassword] = useInput('123456')
-  const [passwordRepeat, handlePasswordRepeat] = useInput('123456')
+  const [email, handleEmail] = useInput('')
+  const [username, handleUsername] = useInput('')
+  const [password, handlePassword] = useInput('')
+  const [passwordRepeat, handlePasswordRepeat] = useInput('')
 
   const handleRegister = (e) => {
     setLoading(true)
     API.register(email, username, password)
       .then((data) => {
         dispatch(login(data))
-
         navigate('/user/profile')
       })
       .finally(() => {
@@ -30,8 +29,8 @@ const Registration = () => {
       })
   }
 
-  if (auth)
-    navigate('/user/profile')
+  if (isAuth)
+    return <Navigate to="/user/profile" />
 
 
   return (
