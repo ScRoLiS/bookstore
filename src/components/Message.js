@@ -8,7 +8,6 @@ const Message = ({ id, type, message }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log(id);
       dispatch(removeMessage(id))
     }, 5000)
   }, [])

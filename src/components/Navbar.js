@@ -68,7 +68,7 @@ const Navbar = () => {
       <div className="container flex gap-2 justify-between items-center h-16 md:h-24">
         <Link className="flex flex-col" to="/">
           <div className="flex gap-1 xl:gap-2 items-center font-bold text-base md:text-2xl">
-            <BsBookHalf className="text-sky-400 mt-0.5 md:mt-1" />
+            <BsBookHalf className="text-sky-400 md:mt-1" />
             <span>BOOK<span className="text-sky-400">STORE</span></span>
           </div>
           <div className="hidden md:block font-light text-sm">

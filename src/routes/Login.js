@@ -19,7 +19,6 @@ const Login = () => {
     setLoading(true)
     API.login(email, password)
       .then((data) => {
-        console.log(data);
         dispatch(login(data))
         dispatch(addMessage(Math.random(), 'notify', 'Вход выполнен успешно!'))
         navigate('/user/profile')
