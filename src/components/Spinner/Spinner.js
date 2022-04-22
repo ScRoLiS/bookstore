@@ -2,10 +2,18 @@ import React from 'react'
 
 import './Spinner.css'
 
-const Spinner = () => {
+const Spinner = ({ type }) => {
+
+  if (type && type === 'small')
+    return (
+      <div className="flex flex-grow justify-center items-center">
+        <div className="spinner-small"></div>
+      </div >
+    )
+
   return (
     <div className="flex flex-grow justify-center items-center">
-      <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      <div className="spinner"></div>
     </div>
   )
 }
