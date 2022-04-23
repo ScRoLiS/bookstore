@@ -2,8 +2,8 @@ import React from 'react'
 
 const ProfilePage = ({ title, children }) => {
   return (
-    <div>
-      <h1 className="text-2xl font-medium">{title}</h1>
+    <div className="flex flex-col grow">
+      <h1 className="text-2xl font-medium mb-4">{title}</h1>
       {children}
     </div>
   )
