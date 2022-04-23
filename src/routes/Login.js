@@ -20,7 +20,7 @@ const Login = () => {
     API.login(email, password)
       .then((data) => {
         dispatch(login(data))
-        dispatch(addMessage(Math.random(), 'notify', 'Вход выполнен успешно!'))
+        dispatch(addMessage(Math.random(), 'success', 'Вход выполнен успешно!'))
         navigate('/user/profile')
       })
       .catch((e) => {
@@ -36,15 +36,15 @@ const Login = () => {
 
   return (
     <div className="grow flex items-center justify-center">
-      <div className="bg-white rounded-md shadow-md p-8  flex flex-col items-center gap-2 w-96">
+      <form className="bg-white rounded-md shadow-md p-8  flex flex-col items-center gap-2 w-96">
         <span className="text-xl">Войти</span>
         <Input value={email} onChange={handleEmail} placeholder="Email" type="email" />
         <Input value={password} onChange={handlePassword} placeholder="Пароль" type="password" />
-        <Button disabled={isLoading || !( email.length && password.length)} onClick={handleLogin} className="w-full mt-2">{isLoading ? <Spinner type="small" /> : 'Войти'}</Button>
+        <Button submit={true} disabled={isLoading || !( email.length && password.length)} onClick={handleLogin} className="w-full mt-2">{isLoading ? <Spinner type="small" /> : 'Войти'}</Button>
         <div className="text-sm flex gap-1 flex-wrap justify-center">
           <span>Нет аккаунта?</span> <Link className="link" to="/user/registration">Регистрация</Link>
         </div>
-      </div>
+      </form>
     </div>
   )
 }

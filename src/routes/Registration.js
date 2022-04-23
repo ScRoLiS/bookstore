@@ -46,17 +46,17 @@ const Registration = () => {
 
   return (
     <div className="grow flex items-center justify-center">
-      <div className="bg-white rounded-md shadow-md p-8 flex flex-col items-center gap-2 w-96">
+      <form className="bg-white rounded-md shadow-md p-8 flex flex-col items-center gap-2 w-96">
         <span className="text-xl">Регистрация</span>
         <Input value={email} onChange={handleEmail} placeholder="Email" type="email" />
         <Input value={username} onChange={handleUsername} placeholder="Имя пользователя" type="text" />
         <Input value={password} onChange={handlePassword} placeholder="Пароль" type="password" />
         <Input value={passwordRepeat} onChange={handlePasswordRepeat} placeholder="Повторите пароль" type="password" />
-        <Button disabled={isLoading} onClick={handleRegister} className="w-full mt-2">{isLoading ? <Spinner type="small" /> : 'Зарегистрироваться'}</Button>
+        <Button submit={true} disabled={isLoading} onClick={handleRegister} className="w-full mt-2">{isLoading ? <Spinner type="small" /> : 'Зарегистрироваться'}</Button>
         <div className="text-sm flex gap-1 flex-wrap justify-center">
           <span>Есть аккаунт?</span> <Link className="link" to="/user/login">Войти</Link>
         </div>
-      </div>
+      </form>
     </div>
   )
 }
