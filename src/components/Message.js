@@ -5,8 +5,15 @@ import { removeMessage } from '../store/actions/messageActions'
 const Message = ({ id, type, message }) => {
 
   const dispatch = useDispatch()
-  const className = `message-${type}`
-  console.log(className);
+
+  const getClassName = (type) => {
+    if (type === 'success')
+      return 'message-success'
+    if (type === 'error')
+      return 'message-error'
+    if (type === 'notify')
+      return 'message-notify'
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -15,7 +22,7 @@ const Message = ({ id, type, message }) => {
   }, [])
 
   return (
-    <div className={className}>
+    <div className={getClassName(type)}>
       {message}
     </div>
   )
