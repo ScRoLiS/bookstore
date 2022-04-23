@@ -18,6 +18,7 @@ const AddCard = () => {
   const [cvv, cvvHandle] = useInput('322')
 
   const handleSave = (e) => {
+    e.preventDefault()
     dispatch(addCard({
       id: Math.random(),
       name,
