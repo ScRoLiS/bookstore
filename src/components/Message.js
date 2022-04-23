@@ -18,7 +18,7 @@ const Message = ({ id, type, message }) => {
   useEffect(() => {
     setTimeout(() => {
       dispatch(removeMessage(id))
-    }, 5000)
+    }, 2500)
   }, [])
 
   return (
