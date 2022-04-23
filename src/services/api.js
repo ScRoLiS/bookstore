@@ -1,7 +1,7 @@
 export default class API {
 
-  static baseUrl = 'https://bookstore-api-server.herokuapp.com'
-  // static baseUrl = 'http://localhost:1337'
+  // static baseUrl = 'https://bookstore-api-server.herokuapp.com'
+  static baseUrl = 'http://localhost:1337'
 
 
   static getBooks = async () => {
