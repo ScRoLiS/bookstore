@@ -15,12 +15,12 @@ const menu = [
     label: 'Платежные карты'
   },
   {
-    to: '/user/purchases',
-    label: 'Покупки'
-  },
-  {
     to: '/user/adresses',
     label: 'Адреса'
+  },
+  {
+    to: '/user/purchases',
+    label: 'Покупки'
   }
 ]
 
@@ -42,13 +42,15 @@ const Profile = () => {
     return <Navigate to="/user/login" />
 
   return (
-    <div className="bg-white rounded-md shadow-md p-4 grow">
-      <div className="flex gap-8">
+    <div className="bg-white rounded-md shadow-md p-4 flex flex-col grow">
+      <div className="flex gap-8 grow">
         <div className="flex flex-col w-52 gap-2 shrink-0">
-          {menu.map((item, index) => <NavLink className={switchLinkStyle} to={item.to} key={index}>{item.label}</NavLink>)}
-          <Button type="ghost" className="w-full" onClick={handleLogout}>Выход</Button>
+          <div className="flex flex-col gap-2 sticky top-28">
+            {menu.map((item, index) => <NavLink className={switchLinkStyle} to={item.to} key={index}>{item.label}</NavLink>)}
+            <Button type="ghost" className="w-full" onClick={handleLogout}>Выход</Button>
+          </div>
         </div>
-        <div className="w-full">
+        <div className="flex flex-col w-full">
           <Outlet />
         </div>
       </div>
