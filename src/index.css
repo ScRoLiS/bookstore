@@ -9,6 +9,22 @@
     padding: 0 10px;
   }
 
+  .message {
+    @apply p-4 bg-white w-52 text-white text-center shadow-md rounded-md flex items-center gap-2;
+  }
+
+  .message-success {
+    @apply message bg-green-500;
+  }
+
+  .message-notify {
+    @apply message bg-yellow-500;
+  }
+
+  .message-error {
+    @apply message bg-red-500;
+  }
+
   .link {
     @apply border-dotted border-b-2 border-black hover:text-gray-300 hover:border-gray-300;
   }
@@ -77,11 +93,26 @@
   }
 
   .input {
-    @apply p-2 border-b-2 border-sky-200 text-sm;
+    @apply w-full p-2 border-b-2 border-sky-200 text-sm;
+  }
+
+  .input-card {
+    @apply input rounded-md border-gray-400;
   }
 
   .input:focus {
     @apply outline-none;
+  }
+
+  .input::-webkit-outer-spin-button,
+  .input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
+
+  .input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
   }
 
   body {
@@ -96,15 +127,7 @@
     @apply cart-link bg-sky-400 text-white;
   }
 
-  .message {
-    @apply p-4 text-center text-white shadow-md rounded-md flex items-center gap-2;
-  }
-
-  .message-notify {
-    @apply message bg-green-300;
-  }
-
-  .message-error {
-    @apply message bg-red-300;
+  tr {
+    margin-bottom: 20px;
   }
 }
