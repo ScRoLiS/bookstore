@@ -22,7 +22,7 @@ const Button = (props) => {
   }
 
   return (
-    <button ref={ref} disabled={props.disabled} onClick={props.onClick} className={`${buttonType(props.type)} ${className}`}>
+    <button ref={ref} type={props.submit ? 'submit' : 'button'} disabled={props.disabled} onClick={props.onClick} className={`${buttonType(props.type)} ${className}`}>
       {props.onHover && hover ? props.onHover : props.children}
     </button>
   )
