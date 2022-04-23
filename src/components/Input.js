@@ -2,7 +2,7 @@ import React from 'react'
 
 const Input = (props) => {
   return (
-    <input {...props} className="input w-full" />
+    <input className="input" {...props} />
   )
 }
 
