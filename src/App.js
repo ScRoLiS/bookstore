@@ -2,7 +2,8 @@ import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Message, Navbar } from './components';
 import { Home, Login, Cart, PageNotFound, Book, Registration } from './routes';
-import { Adresses, Purchases, UserProfile, Profile } from './routes/Profile';
+import { Purchases, UserProfile, Profile } from './routes/Profile';
+import { Adresses, AddAdress, ViewAdresses } from './routes/Profile/Adresses';
 import { Cards, AddCard, ViewCards } from './routes/Profile/Cards'
 
 function App() {
@@ -20,7 +21,10 @@ function App() {
                 <Route index element={<ViewCards />} />
                 <Route path="add" element={<AddCard />} />
               </Route>
-              <Route path="adresses" element={<Adresses />} />
+              <Route path="adresses" element={<Adresses />}>
+                <Route index element={<ViewAdresses />} />
+                <Route path="add" element={<AddAdress />} />
+              </Route>
               <Route path="purchases" element={<Purchases />} />
               <Route path="profile" element={<UserProfile />} />
             </Route>
