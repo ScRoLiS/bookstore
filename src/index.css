@@ -10,7 +10,7 @@
   }
 
   .message {
-    @apply p-4 bg-white w-52 text-white text-center shadow-md rounded-md flex items-center gap-2;
+    @apply p-4 bg-white w-64 text-white text-center shadow-md rounded-md flex items-center gap-2;
   }
 
   .message-success {
@@ -97,7 +97,7 @@
   }
 
   .input-card {
-    @apply input rounded-md border-gray-400;
+    @apply input rounded-md border-none;
   }
 
   .input:focus {
@@ -127,7 +127,7 @@
     @apply cart-link bg-sky-400 text-white;
   }
 
-  tr {
-    margin-bottom: 20px;
+  .card-table-row {
+    @apply grid grid-cols-4 p-2 mb-4;
   }
 }

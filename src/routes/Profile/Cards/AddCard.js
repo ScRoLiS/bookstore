@@ -13,7 +13,7 @@ const AddCard = () => {
   const navigate = useNavigate()
   const [name, nameHandle] = useInput('Kucher Sergey')
   const [number, numberHandle] = useInput('1234987612349876')
-  const [mm, mmHandle] = useInput('12') 
+  const [mm, mmHandle] = useInput('12')
   const [yy, yyHandle] = useInput('12')
   const [cvv, cvvHandle] = useInput('322')
 
@@ -30,7 +30,7 @@ const AddCard = () => {
   }
 
   return (
-    <div className="flex flex-col grow justify-center items-center">
+    <form className="flex flex-col grow justify-center items-center">
       <div className="relative overflow-auto">
         <div className="rounded-lg ml-36 mt-12 bg-gray-300 flex flex-col gap-4 shadow-md w-96 h-56">
           <div className="bg-gray-500 mt-10 h-20">
@@ -53,9 +53,8 @@ const AddCard = () => {
           </div>
         </div>
       </div>
-      <Button onClick={handleSave} className="mt-4">Сохранить</Button>
-
-    </div>
+      <Button submit={true} onClick={handleSave} className="mt-4">Сохранить</Button>
+    </form>
 
   )
 }

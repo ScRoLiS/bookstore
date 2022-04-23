@@ -27,30 +27,25 @@ const ViewCards = () => {
 
   return (
     <div className="flex flex-col">
-      <table className="w-full text-left font-normal">
-        <thead>
-          <tr className="font-medium">
-            <td>Владелец</td>
-            <td>Номер</td>
-            <td>Годен до</td>
-            <td></td>
-          </tr>
-        </thead>
-        <tbody>
-          {cards.map((item) => {
-            return (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>{item.number}</td>
-                <td>{item.date}</td>
-                <td className="text-center">
-                  <Button onClick={() => { removeHandle(item.id) }} type="link" className="border-none text-red-600 hover:text-red-200 hover:border-none">Удалить</Button>
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      <div className="flex flex-col">
+        <div className="card-table-row font-semibold">
+          <div>Владелец</div>
+          <div>Номер</div>
+          <div>Годен до</div>
+        </div>
+        {cards.map((item) => {
+          return (
+            <div key={item.id} className="card-table-row">
+              <div>{item.name}</div>
+              <div>{item.number}</div>
+              <div>{item.date}</div>
+              <div className="text-center">
+                <Button onClick={() => { removeHandle(item.id) }} type="link" className="border-none text-red-600 hover:text-red-200 hover:border-none">Удалить</Button>
+              </div>
+            </div>
+          )
+        })}
+      </div>
       <Link to="/user/cards/add" className="button mt-4 self-center">Добавить карту</Link>
     </div>
   )
