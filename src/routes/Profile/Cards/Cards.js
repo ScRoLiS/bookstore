@@ -1,10 +1,11 @@
 import React from 'react'
-import { ProfilePage } from '../../containers'
+import { Outlet } from 'react-router-dom'
+import { ProfilePage } from '../../../containers'
 
 const Cards = () => {
   return (
     <ProfilePage title="Платежные карты">
-
+      <Outlet />
     </ProfilePage>
   )
 }

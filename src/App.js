@@ -2,7 +2,8 @@ import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Message, Navbar } from './components';
 import { Home, Login, Cart, PageNotFound, Book, Registration } from './routes';
-import { Adresses, Cards, Purchases, UserProfile, Profile } from './routes/Profile';
+import { Adresses, Purchases, UserProfile, Profile } from './routes/Profile';
+import { Cards, AddCard, ViewCards } from './routes/Profile/Cards'
 
 function App() {
   const { messages } = useSelector(state => state.messages)
@@ -15,7 +16,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/user" >
             <Route path="" element={<Profile />} >
-              <Route path="cards" element={<Cards />} />
+              <Route path="cards" element={<Cards />}>
+                <Route index element={<ViewCards />} />
+                <Route path="add" element={<AddCard />} />
+              </Route>
               <Route path="adresses" element={<Adresses />} />
               <Route path="purchases" element={<Purchases />} />
               <Route path="profile" element={<UserProfile />} />
