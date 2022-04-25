@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Navigate, NavLink, Outlet, useNavigate, } from 'react-router-dom'
 import { Button } from '../../components'
 import { useAuth } from '../../hooks'
+import { resetCart } from '../../store/actions/cartAction'
 import { logout } from '../../store/actions/userActions'
 
 const menu = [
   {
     to: '/user/profile',
-    label: 'Личные данные'
+    label: 'Данные профиля'
   },
   {
     to: '/user/cards',
@@ -35,8 +36,14 @@ const Profile = () => {
 
   const handleLogout = () => {
     dispatch(logout())
+    dispatch(resetCart())
     navigate('/user/login')
   }
+
+  useEffect(() => {
+    if(isAuth)
+      navigate('/user/profile')
+  }, [])
 
   if (!isAuth)
     return <Navigate to="/user/login" />
