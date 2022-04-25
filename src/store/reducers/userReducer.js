@@ -1,17 +1,24 @@
 import { UserType } from "../types/userTypes"
 
+const getJWT = () => {
+  const jwt = localStorage.getItem('jwt')
+
+  return jwt ? JSON.parse(jwt) : ''
+}
+
 const initialState = {
   user: {},
-  jwt: '',
-  auth: false,
+  jwt: getJWT(),
 }
 
 const userReducer = (state = initialState, action) => {
   if (action.type === UserType.USER_LOGIN) {
-    return { user: action.payload.user, jwt: action.payload.jwt, auth: true }
+    localStorage.setItem('jwt', JSON.stringify(action.payload.jwt))
+    return { user: action.payload.user, jwt: action.payload.jwt }
   }
   if (action.type === UserType.USER_LOGOUT) {
-    return { user: {}, jwt: '', auth: false }
+    localStorage.removeItem('jwt')
+    return { user: {}, jwt: '' }
   }
   return state
 }
