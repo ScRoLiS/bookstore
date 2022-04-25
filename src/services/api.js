@@ -1,7 +1,7 @@
 export default class API {
 
-  static baseUrl = 'https://bookstore-api-server.herokuapp.com'
-  // static baseUrl = 'http://localhost:1337'
+  // static baseUrl = 'https://bookstore-api-server.herokuapp.com'
+  static baseUrl = 'http://localhost:1337'
 
 
   static getBooks = async () => {
@@ -46,6 +46,52 @@ export default class API {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    })
+
+    const data = await req.json()
+
+    if (req.status !== 200)
+      throw new Error(data.error.message)
+
+    return data
+  }
+
+  static getUser = async (jwt) => {
+
+    const req = await fetch(this.baseUrl + `/api/users/me`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${jwt}`
+      }
+    })
+
+    const data = await req.json()
+
+    if (req.status !== 200)
+      throw new Error(data.error.message)
+
+    return data
+  }
+
+  static udpateCart = async (jwt, cart) => {
+
+    const body = {
+      cart
+    }
+    const req = await fetch(this.baseUrl + `/api/users/me`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': '<calculated when request is sent>',
+        'Host': '<calculated when request is sent>',
+        'User-Agent': 'BookStore',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+        'Authorization': `Bearer ${jwt}`
       },
       body: JSON.stringify(body)
     })
