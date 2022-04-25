@@ -43,11 +43,11 @@
   }
 
   .link-profile {
-    @apply rounded-md p-2 relative bg-sky-50 hover:bg-sky-100;
+    @apply rounded-md p-2 relative bg-sky-50 hover:bg-sky-100 md:text-sm lg:text-base;
   }
 
   .link-profile-active {
-    @apply relative text-white font-medium rounded-l-md p-2 bg-sky-400 hover:bg-sky-400;
+    @apply link-profile relative text-white font-medium rounded-l-md p-2 bg-sky-400 hover:bg-sky-400;
   }
 
   .link-profile-active::before {
@@ -128,6 +128,6 @@
   }
 
   .card-table-row {
-    @apply grid grid-cols-4 mb-5;
+    @apply grid grid-cols-4 mb-5 md:text-sm lg:text-base;
   }
 }

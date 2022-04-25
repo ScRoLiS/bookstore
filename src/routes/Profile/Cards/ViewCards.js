@@ -1,17 +1,24 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button } from '../../../components'
+import API from '../../../services/api'
 import { removeCard } from '../../../store/actions/cardActions'
 import { addMessage } from '../../../store/actions/messageActions'
 
 const ViewCards = () => {
+  const store = useStore()
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   const { cards } = useSelector(state => state.cards)
 
   const removeHandle = (id) => {
     dispatch(removeCard(id))
     dispatch(addMessage(Math.random(), 'success', 'Карта удалена!'))
+    API.udpateCards(user.jwt, store.getState().cards.cards)
+      .catch((e) => {
+        console.log(e);
+      })
   }
 
   if (!cards.length) {

@@ -15,9 +15,6 @@ const Cart = () => {
 
   const sendToServer = () => {
     API.udpateCart(user.jwt, store.getState().cart.cart)
-      .then((data) => {
-        console.log(data);
-      })
       .catch((e) => {
         console.log(e);
       })

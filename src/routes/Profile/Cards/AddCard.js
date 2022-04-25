@@ -47,15 +47,15 @@ const AddCard = () => {
 
   return (
     <form className="flex flex-col grow justify-center items-center">
-      <div className="relative overflow-auto">
-        <div className="rounded-lg ml-36 mt-12 bg-gray-300 flex flex-col gap-4 shadow-md w-96 h-56">
+      <div className="md:flex md:flex-col lg:block items-center relative overflow-visible">
+        <div className="md:absolute md:mt-20 lg:static rounded-lg lg:ml-36 lg:mt-12 bg-gray-300 flex flex-col gap-4 shadow-md md:w-[90%] lg:w-96 h-56">
           <div className="bg-gray-500 mt-10 h-20">
           </div>
-          <div className="px-8 flex">
-            <Input value={cvv} onChange={cvvHandle} className="input-card ml-auto w-20" type="number" placeholder="CVV" />
+          <div className="md:mt-7 lg:mt-0 px-8 flex md:justify-center lg:justify-start">
+            <Input value={cvv} onChange={cvvHandle} className="input-card lg:ml-auto w-20" type="number" placeholder="CVV" />
           </div>
         </div>
-        <div className="rounded-lg absolute top-0 bg-gray-200 flex flex-col justify-between gap-2 shadow-md w-96 h-56 p-8">
+        <div className="rounded-lg z-10 md:mb-20 lg:absolute top-0 bg-gray-200 flex flex-col justify-between gap-2 shadow-md w-96 h-56 p-8">
           <Input value={name} onChange={nameHandle} className="input-card" placeholder="Имя владельца" />
           <Input value={number} onChange={numberHandle} className="input-card" type="number" placeholder="Номер карты" />
           <div className="flex items-center gap-2">
