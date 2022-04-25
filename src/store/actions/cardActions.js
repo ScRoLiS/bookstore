@@ -13,3 +13,16 @@ export const removeCard = (id) => {
     payload: id
   }
 }
+
+export const setCards = (cards) => {
+  return {
+    type: CardType.SET_CARDS,
+    payload: cards
+  }
+}
+
+export const resetCards = () => {
+  return {
+    type: CardType.RESET_CARDS
+  }
+}

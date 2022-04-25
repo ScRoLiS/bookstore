@@ -1,16 +1,21 @@
-import React from 'react'
-import { Button, Input } from '../../../components'
+import React, { useState } from 'react'
+import { Button, Input, Spinner } from '../../../components'
 import { FaCcMastercard, FaCcVisa } from 'react-icons/fa'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import { addMessage } from '../../../store/actions/messageActions'
 import { addCard } from '../../../store/actions/cardActions'
 import { useInput } from '../../../hooks'
 import { useNavigate } from 'react-router-dom'
+import API from '../../../services/api'
 
 const AddCard = () => {
 
+  const [isLoading, setLoading] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const store = useStore()
+  const { cards } = useSelector(state => state.cards)
+  const user = useSelector(state => state.user)
   const [name, nameHandle] = useInput('Kucher Sergey')
   const [number, numberHandle] = useInput('1234987612349876')
   const [mm, mmHandle] = useInput('12')
@@ -19,6 +24,7 @@ const AddCard = () => {
 
   const handleSave = (e) => {
     e.preventDefault()
+    setLoading(true)
     dispatch(addCard({
       id: Math.random(),
       name,
@@ -26,8 +32,17 @@ const AddCard = () => {
       date: `${mm}/${yy}`,
       cvv
     }))
-    dispatch(addMessage(Math.random(), 'success', 'Карта сохранена!'))
-    navigate('/user/cards')
+    API.udpateCards(user.jwt, store.getState().cards.cards)
+      .then(() => {
+        dispatch(addMessage(Math.random(), 'success', 'Карта сохранена!'))
+        navigate('/user/cards')
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
 
   return (
@@ -54,7 +69,7 @@ const AddCard = () => {
           </div>
         </div>
       </div>
-      <Button submit={true} onClick={handleSave} className="mt-4">Сохранить</Button>
+      <Button disabled={isLoading} submit={true} onClick={handleSave} className="mt-4 min-w-[100px]">{isLoading ? <Spinner type="small" /> : 'Сохранить'}</Button>
     </form>
 
   )

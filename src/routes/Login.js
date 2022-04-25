@@ -7,6 +7,7 @@ import API from '../services/api'
 import { login } from '../store/actions/userActions'
 import { addMessage } from '../store/actions/messageActions'
 import { setCart } from '../store/actions/cartAction'
+import { setCards } from '../store/actions/cardActions'
 
 const Login = () => {
   const isAuth = useAuth()
@@ -21,8 +22,9 @@ const Login = () => {
     API.login(email, password)
       .then((data) => {
         dispatch(login(data))
-        dispatch(addMessage(Math.random(), 'success', 'Вход выполнен успешно!'))
         dispatch(setCart(data.user.cart))
+        dispatch(setCards(data.user.cards))
+        dispatch(addMessage(Math.random(), 'success', 'Вход выполнен успешно!'))
         navigate('/user/profile')
       })
       .catch((e) => {

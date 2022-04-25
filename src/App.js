@@ -8,6 +8,7 @@ import { Purchases, UserProfile, Profile } from './routes/Profile';
 import { Adresses, AddAdress, ViewAdresses } from './routes/Profile/Adresses';
 import { Cards, AddCard, ViewCards } from './routes/Profile/Cards'
 import API from './services/api';
+import { setCards } from './store/actions/cardActions';
 import { setCart } from './store/actions/cartAction';
 import { login, logout } from './store/actions/userActions';
 
@@ -25,6 +26,7 @@ function App() {
           const { cart, cards } = data
           dispatch(login({ user: data, jwt }))
           dispatch(setCart(cart))
+          dispatch(setCards(cards))
         })
         .catch((e) => {
           console.log(e);
