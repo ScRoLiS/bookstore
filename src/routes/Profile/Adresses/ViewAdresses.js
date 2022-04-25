@@ -1,7 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Button } from '../../../components'
 
 const ViewAdresses = () => {
   const { adresses } = useSelector(state => state.adresses)
