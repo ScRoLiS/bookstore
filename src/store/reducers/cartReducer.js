@@ -45,6 +45,17 @@ const cartReducer = (state = initialState, action) => {
     return { cart: newCart }
   }
 
+  if (action.type === CartType.RESET_CART) {
+
+    localStorage.setItem('cart', JSON.stringify([]))
+
+    return { cart: [] }
+  }
+
+  if (action.type === CartType.SET_CART) {
+    return { cart: action.payload }
+  }
+
   return state
 }
 

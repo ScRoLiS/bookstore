@@ -27,3 +27,16 @@ export const decrementCount = (id) => {
     payload: id
   }
 }
+
+export const setCart = (cart) => {
+  return {
+    type: CartType.SET_CART,
+    payload: cart
+  }
+}
+
+export const resetCart = () => {
+  return {
+    type: CartType.RESET_CART
+  }
+}

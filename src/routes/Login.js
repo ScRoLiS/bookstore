@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import API from '../services/api'
 import { login } from '../store/actions/userActions'
 import { addMessage } from '../store/actions/messageActions'
+import { setCart } from '../store/actions/cartAction'
 
 const Login = () => {
   const isAuth = useAuth()
@@ -21,6 +22,7 @@ const Login = () => {
       .then((data) => {
         dispatch(login(data))
         dispatch(addMessage(Math.random(), 'success', 'Вход выполнен успешно!'))
+        dispatch(setCart(data.user.cart))
         navigate('/user/profile')
       })
       .catch((e) => {
@@ -40,7 +42,7 @@ const Login = () => {
         <span className="text-xl">Войти</span>
         <Input value={email} onChange={handleEmail} placeholder="Email" type="email" />
         <Input value={password} onChange={handlePassword} placeholder="Пароль" type="password" />
-        <Button submit={true} disabled={isLoading || !( email.length && password.length)} onClick={handleLogin} className="w-full mt-2">{isLoading ? <Spinner type="small" /> : 'Войти'}</Button>
+        <Button submit={true} disabled={isLoading || !(email.length && password.length)} onClick={handleLogin} className="w-full mt-2">{isLoading ? <Spinner type="small" /> : 'Войти'}</Button>
         <div className="text-sm flex gap-1 flex-wrap justify-center">
           <span>Нет аккаунта?</span> <Link className="link" to="/user/registration">Регистрация</Link>
         </div>

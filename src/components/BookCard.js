@@ -1,27 +1,48 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useCallback, useEffect } from 'react'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../hooks'
+import API from '../services/api'
 import { addToCart, removeFromCart } from '../store/actions/cartAction'
 import Button from './Button'
 
 const BookCard = (props) => {
   const dispatch = useDispatch()
-  const { cart } = useSelector(state => state.cart)
+  const store = useStore()
+  const isAuth = useAuth()
+  const user = useSelector(state => state.user)
+  const { cart } = useSelector(state => {
+    return state.cart
+  })
 
-  const handleAddToCart = () => {
-    dispatch(addToCart(props))
-  }
-
-  const handleRemoveFromCart = () => {
-    dispatch(removeFromCart(props.id))
-  }
-
-  const isInCart = (id) => {
+  const isInCart = useCallback((id) => {
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].id === id)
         return true
     }
     return false
+  }, [cart])
+
+  const sendToServer = () => {
+    API.udpateCart(user.jwt, store.getState().cart.cart)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+  }
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(props))
+    if (isAuth)
+      sendToServer()
+  }
+
+  const handleRemoveFromCart = () => {
+    dispatch(removeFromCart(props.id))
+    if (isAuth)
+      sendToServer()
   }
 
   return (

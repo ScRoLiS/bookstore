@@ -1,23 +1,44 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button, CartFooter } from '../components'
+import { useAuth } from '../hooks'
+import API from '../services/api'
 import { decrementCount, incrementCount, removeFromCart } from '../store/actions/cartAction'
 
 const Cart = () => {
+  const store = useStore()
+  const isAuth = useAuth()
+  const user = useSelector(state => state.user)
   const { cart } = useSelector(state => state.cart)
   const dispatch = useDispatch()
 
+  const sendToServer = () => {
+    API.udpateCart(user.jwt, store.getState().cart.cart)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+  }
+
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart(id))
+    if (isAuth)
+      sendToServer()
   }
 
   const handleIncrementCount = (id) => {
     dispatch(incrementCount(id))
+    if (isAuth)
+      sendToServer()
   }
 
   const handleDecrementCount = (id) => {
     dispatch(decrementCount(id))
+    if (isAuth)
+      sendToServer()
   }
 
   useEffect(() => {
