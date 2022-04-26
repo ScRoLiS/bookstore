@@ -1,5 +1,11 @@
-import React from 'react'
-import { Button, Input } from '../../../components'
+import React, { useState } from 'react'
+import { useDispatch, useSelector, useStore } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { Button, Input, Spinner } from '../../../components'
+import { useInput } from '../../../hooks'
+import API from '../../../services/api'
+import { addAdress } from '../../../store/actions/adressActions'
+import { addMessage } from '../../../store/actions/messageActions'
 
 const countries = [
   "Австралия ",
@@ -242,46 +248,122 @@ const countries = [
 
 const AddAdress = () => {
 
-  const countryHandle = (e) => {
-    console.log(e.target.value);
+  const [index, changeIndex] = useInput('')
+  const [country, changeCountry] = useInput('')
+  const [city, changeCity] = useInput('')
+  const [street, changeStreet] = useInput('')
+  const [home, changeHome] = useInput('')
+  const [flat, changeFlat] = useInput('')
+  const [secondName, changeSecondName] = useInput('')
+  const [firstName, changeFirstName] = useInput('')
+  const [surname, changeSurname] = useInput('')
+  const [tel, changeTel] = useInput('')
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const store = useStore()
+  const user = useSelector(state => state.user)
+  const [isLoading, setLoading] = useState(false)
+
+  const addAdressHandle = (e) => {
+    setLoading(true)
+    const adress = {
+      whereTo: {
+        index, country, city, street, home, flat
+      },
+      whom: {
+        secondName, firstName, surname, tel
+      }
+    }
+
+    dispatch(addAdress({ id:  Math.round(Math.random() * 1000), adress }))
+
+    API.udpateAdresses(user.jwt, store.getState().adresses.adresses)
+      .then(() => {
+        dispatch(addMessage(Math.random(), 'success', 'Адрес сохранен!'))
+        navigate('/user/adresses')
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
 
   return (
     <div>
       <form className="">
-        <div className="flex gap-4">
-          <div className="w-1/2">
-            <h1 className="font-medium mb-2">Куда</h1>
+        <div className="flex flex-col lg:flex-row gap-6">
+          <div className="lg:w-1/2">
+            <h1 className="font-medium mb-6">Куда</h1>
             <div className="flex flex-col gap-4">
               <div className="flex gap-2">
-                <Input className="input w-1/2 shrink-0" placeholder="Индекс" />
-                <select defaultValue="" onChange={countryHandle} name="country" className="-m-[0.5px] h-full w-1/2 p-2 border-b-2 border-sky-200 text-sm">
-                  <option value="" disabled>Страна</option>
-                  {countries.map((item, index) => {
-                    return <option key={index}>{item}</option>
-                  })}
-                </select>
+                <div className="flex flex-col w-1/2 shrink-0">
+                  <span className="text-xs">Индекс</span>
+                  <Input value={index} onChange={changeIndex} type="number" />
+                </div>
+                <div className="flex flex-col w-1/2">
+                  <span className="text-xs">Страна</span>
+                  <select value={country} onChange={changeCountry} name="country" className="-mt-[2.5px] h-full w-full p-2 border-b-2 border-sky-200 text-sm">
+                    <option value="" disabled></option>
+                    {countries.map((item, index) => {
+                      return <option key={index}>{item}</option>
+                    })}
+                  </select>
+                </div>
               </div>
-              <Input placeholder="Населенный пункт" />
-              <Input placeholder="Улица" />
+              <div className="flex flex-col">
+                <span className="text-xs">Населенный пункт</span>
+                <Input value={city} onChange={changeCity} />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xs">Улица</span>
+                <Input value={street} onChange={changeStreet} />
+              </div>
               <div className="flex gap-2">
-                <Input placeholder="Дом" />
-                <Input placeholder="Квартира" />
+                <div className="flex flex-col grow">
+                  <span className="text-xs">Дом</span>
+                  <Input value={home} onChange={changeHome} />
+                </div>
+                <div className="flex flex-col grow">
+                  <span className="text-xs">Квартира</span>
+                  <Input value={flat} onChange={changeFlat} />
+                </div>
               </div>
             </div>
           </div>
-          <div className="w-1/2">
-            <h1 className="font-medium mb-2">Кому</h1>
+          <div className="lg:w-1/2">
+            <h1 className="font-medium mb-6">Кому</h1>
             <div className="flex flex-col gap-4">
-              <Input placeholder="Фамилия" />
-              <Input placeholder="Имя" />
-              <Input placeholder="Отчество" />
-              <Input placeholder="Номер телефона" />
+              <div className="flex flex-col grow">
+                <span className="text-xs">Фамилия</span>
+                <Input value={secondName} onChange={changeSecondName} />
+              </div>
+              <div className="flex flex-col grow">
+                <span className="text-xs">Имя</span>
+                <Input value={firstName} onChange={changeFirstName} />
+              </div>
+              <div className="flex flex-col grow">
+                <span className="text-xs">Отчество</span>
+                <Input value={surname} onChange={changeSurname} />
+              </div>
+              <div className="flex flex-col grow">
+                <span className="text-xs">Номер телефона</span>
+                <Input value={tel} onChange={changeTel} />
+              </div>
             </div>
           </div>
         </div>
         <div className="flex justify-center">
-          <Button className="mt-4">Сохранить</Button>
+          <Button
+            submit={true}
+            disabled={isLoading || !(city && index && country && street && home && firstName && secondName && surname && tel)}
+            onClick={addAdressHandle}
+            className="mt-4 min-w-[100px]"
+          >
+            {isLoading ? <Spinner type="small" /> : 'Сохранить'}
+          </Button>
         </div>
 
       </form >
