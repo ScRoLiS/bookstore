@@ -12,6 +12,12 @@ const adressReducer = (state = initialState, action) => {
   if (action.type === AdressType.REMOVE_ADRESS) {
     return { adresses: state.adresses.filter((item) => { return item.id !== action.payload }) }
   }
+  if (action.type === AdressType.SET_ADRESSES) {
+    return { adresses: action.payload }
+  }
+  if (action.type === AdressType.RESET_ADRESSES) {
+    return { adresses: [] }
+  }
   return state
 }
 

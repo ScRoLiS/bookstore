@@ -13,3 +13,16 @@ export const removeAdress = (id) => {
     payload: id
   }
 }
+
+export const setAdresses = (adresses) => {
+  return {
+    type: AdressType.SET_ADRESSES,
+    payload: adresses
+  }
+}
+
+export const resetAdresses = () => {
+  return {
+    type: AdressType.RESET_ADRESSES
+  }
+}
