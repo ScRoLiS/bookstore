@@ -130,4 +130,31 @@ export default class API {
 
     return data
   }
+
+  static udpateAdresses = async (jwt, adresses) => {
+    const body = {
+      adresses
+    }
+    const req = await fetch(this.baseUrl + `/api/users/me`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': '<calculated when request is sent>',
+        'Host': '<calculated when request is sent>',
+        'User-Agent': 'BookStore',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+        'Authorization': `Bearer ${jwt}`
+      },
+      body: JSON.stringify(body)
+    })
+
+    const data = await req.json()
+
+    if (req.status !== 200)
+      throw new Error(data.error.message)
+
+    return data
+  }
 }
