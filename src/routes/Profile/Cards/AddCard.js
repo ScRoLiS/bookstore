@@ -16,11 +16,11 @@ const AddCard = () => {
   const store = useStore()
   const { cards } = useSelector(state => state.cards)
   const user = useSelector(state => state.user)
-  const [name, nameHandle] = useInput('Kucher Sergey')
-  const [number, numberHandle] = useInput('1234987612349876')
-  const [mm, mmHandle] = useInput('12')
-  const [yy, yyHandle] = useInput('12')
-  const [cvv, cvvHandle] = useInput('322')
+  const [name, nameHandle] = useInput('')
+  const [number, numberHandle] = useInput('')
+  const [mm, mmHandle] = useInput('')
+  const [yy, yyHandle] = useInput('')
+  const [cvv, cvvHandle] = useInput('')
 
   const handleSave = (e) => {
     e.preventDefault()

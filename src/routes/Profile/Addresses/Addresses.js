@@ -2,7 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { ProfilePage } from '../../../containers'
 
-const Adresses = () => {
+const Addresses = () => {
   return (
     <ProfilePage title="Адреса">
       <Outlet />
@@ -10,4 +10,4 @@ const Adresses = () => {
   )
 }
 
-export default Adresses
+export default Addresses

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button, Input, Spinner } from '../../../components'
 import { useInput } from '../../../hooks'
 import API from '../../../services/api'
-import { addAdress } from '../../../store/actions/adressActions'
+import { addAddress } from '../../../store/actions/addressActions'
 import { addMessage } from '../../../store/actions/messageActions'
 
 const countries = [
@@ -246,7 +246,7 @@ const countries = [
   "Япония",
 ]
 
-const AddAdress = () => {
+const AddAddress = () => {
 
   const [index, changeIndex] = useInput('')
   const [country, changeCountry] = useInput('')
@@ -265,9 +265,9 @@ const AddAdress = () => {
   const user = useSelector(state => state.user)
   const [isLoading, setLoading] = useState(false)
 
-  const addAdressHandle = (e) => {
+  const addAddressHandle = (e) => {
     setLoading(true)
-    const adress = {
+    const address = {
       whereTo: {
         index, country, city, street, home, flat
       },
@@ -276,12 +276,12 @@ const AddAdress = () => {
       }
     }
 
-    dispatch(addAdress({ id:  Math.round(Math.random() * 1000), adress }))
+    dispatch(addAddress({ id:  Math.round(Math.random() * 1000), address }))
 
-    API.udpateAdresses(user.jwt, store.getState().adresses.adresses)
+    API.updateAddresses(user.jwt, store.getState().addresses.addresses)
       .then(() => {
         dispatch(addMessage(Math.random(), 'success', 'Адрес сохранен!'))
-        navigate('/user/adresses')
+        navigate('/user/addresses')
       })
       .catch((e) => {
         console.log(e);
@@ -359,7 +359,7 @@ const AddAdress = () => {
           <Button
             submit={true}
             disabled={isLoading || !(city && index && country && street && home && firstName && secondName && surname && tel)}
-            onClick={addAdressHandle}
+            onClick={addAddressHandle}
             className="mt-4 min-w-[100px]"
           >
             {isLoading ? <Spinner type="small" /> : 'Сохранить'}
@@ -371,4 +371,4 @@ const AddAdress = () => {
   )
 }
 
-export default AddAdress
+export default AddAddress

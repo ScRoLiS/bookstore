@@ -1,16 +1,18 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { Footer, Message, Navbar } from './components';
 import { useAuth } from './hooks';
 import { Home, Login, Cart, PageNotFound, Book, Registration } from './routes';
 import { Purchases, UserProfile, Profile } from './routes/Profile';
-import { Adresses, AddAdress, ViewAdresses } from './routes/Profile/Adresses';
+import { Addresses, AddAddress, ViewAddresses } from './routes/Profile/Addresses';
 import { Cards, AddCard, ViewCards } from './routes/Profile/Cards'
-import API from './services/api';
+import { setAddresses } from './store/actions/addressActions';
 import { setCards } from './store/actions/cardActions';
 import { setCart } from './store/actions/cartAction';
 import { login, logout } from './store/actions/userActions';
+import API from './services/api';
+
 
 function App() {
   const isAuth = useAuth()
@@ -23,10 +25,11 @@ function App() {
     if (isAuth)
       API.getUser(jwt)
         .then((data) => {
-          const { cart, cards } = data
+          const { cart, cards, adresses } = data
           dispatch(login({ user: data, jwt }))
           dispatch(setCart(cart))
           dispatch(setCards(cards))
+          dispatch(setAddresses(adresses))
         })
         .catch((e) => {
           console.log(e);
@@ -47,10 +50,11 @@ function App() {
                 <Route index element={<ViewCards />} />
                 <Route path="add" element={<AddCard />} />
               </Route>
-              <Route path="adresses" element={<Adresses />}>
-                <Route index element={<ViewAdresses />} />
-                <Route path="add" element={<AddAdress />} />
+              <Route path="addresses" element={<Addresses />}>
+                <Route index element={<ViewAddresses />} />
+                <Route path="add" element={<AddAddress />} />
               </Route>
+              <Route path="" element={<Navigate to="/user/profile" />} />
               <Route path="purchases" element={<Purchases />} />
               <Route path="profile" element={<UserProfile />} />
             </Route>

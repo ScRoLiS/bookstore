@@ -131,9 +131,9 @@ export default class API {
     return data
   }
 
-  static udpateAdresses = async (jwt, adresses) => {
+  static updateAddresses = async (jwt, addresses) => {
     const body = {
-      adresses
+      addresses
     }
     const req = await fetch(this.baseUrl + `/api/users/me`, {
       method: 'PUT',

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Navigate, NavLink, Outlet, useNavigate, } from 'react-router-dom'
 import { Button } from '../../components'
@@ -16,7 +16,7 @@ const menu = [
     label: 'Платежные карты'
   },
   {
-    to: '/user/adresses',
+    to: '/user/addresses',
     label: 'Адреса'
   },
   {
@@ -39,11 +39,6 @@ const Profile = () => {
     dispatch(resetCart())
     navigate('/user/login')
   }
-
-  useEffect(() => {
-    if(isAuth)
-      navigate('/user/profile')
-  }, [])
 
   if (!isAuth)
     return <Navigate to="/user/login" />

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import adressReducer from "./adressReducer";
+import addressReducer from "./addressReducer";
 import bookReducer from "./bookReducer";
 import cardReducer from "./cardReducer";
 import cartReducer from "./cartReducer";
@@ -12,5 +12,5 @@ export const rootReducer = combineReducers({
   user: userReducer,
   messages: messageReducer,
   cards: cardReducer,
-  adresses: adressReducer
+  addresses: addressReducer
 })
