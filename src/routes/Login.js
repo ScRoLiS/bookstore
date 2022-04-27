@@ -8,6 +8,7 @@ import { login } from '../store/actions/userActions'
 import { addMessage } from '../store/actions/messageActions'
 import { setCart } from '../store/actions/cartAction'
 import { setCards } from '../store/actions/cardActions'
+import { setAddresses } from '../store/actions/addressActions'
 
 const Login = () => {
   const isAuth = useAuth()
@@ -24,6 +25,7 @@ const Login = () => {
         dispatch(login(data))
         dispatch(setCart(data.user.cart))
         dispatch(setCards(data.user.cards))
+        dispatch(setAddresses(data.user.addresses))
         dispatch(addMessage(Math.random(), 'success', 'Вход выполнен успешно!'))
         navigate('/user/profile')
       })
