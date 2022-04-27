@@ -8,7 +8,7 @@ const filters = ['Название', 'Автор', 'Жанр']
 const SearchFilter = () => {
   return (
     <div className="rounded-md shadow-md bg-white p-4 flex items-center gap-2">
-      <div className="w-44 shrink-0">
+      <div className="grow shrink-0">
         <select name="filters" className="w-full">
           {filters.map((item, index) => <option key={index} value={index}>{item}</option>)}
         </select>
