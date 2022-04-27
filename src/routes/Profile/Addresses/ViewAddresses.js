@@ -39,7 +39,7 @@ const ViewAddresses = () => {
     <div>
       <div className="flex flex-col items-center">
         <div className="w-full">
-          <div className="adress-table-row font-medium">
+          <div className="adress-table-row font-medium text-center md:text-justify">
             <div className="table-col">Страна</div>
             <div className="table-col">Город</div>
             <div className="table-col">Улица</div>
@@ -48,12 +48,12 @@ const ViewAddresses = () => {
           {addresses.map((item) => {
             const { country, city, street, home } = item.address.whereTo
             return (
-              <div key={item.id} className="adress-table-row">
+              <div key={item.id} className="adress-table-row text-center md:text-justify">
                 <div className="table-col">{country}</div>
                 <div className="table-col">{city}</div>
                 <div className="table-col">{street}</div>
                 <div>{home}</div>
-                <div>
+                <div className="flex justify-center md:block col-span-full md:col-span-1 mt-2 md:mt-0">
                   <Link to={`/user/addresses/${item.id}`} className="link mr-3 border-none text-sky-600 hover:text-sky-200 hover:border-none">Подробнее</Link>
                   <Button onClick={() => { removeAddressHandle(item.id) }} to={`/user/addresses/${item.id}`} type="link" className="border-none text-red-600 hover:text-red-200 hover:border-none">Удалить</Button>
                 </div>

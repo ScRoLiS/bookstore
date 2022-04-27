@@ -133,11 +133,11 @@
   }
 
   .card-table-row {
-    @apply gap-1 grid grid-cols-4 mb-5 text-xs md:text-sm lg:text-base;
+    @apply gap-2 grid grid-cols-4 mb-5 text-xs md:text-sm lg:text-base;
   }
 
   .adress-table-row {
-    @apply gap-1 grid grid-cols-5 mb-5 text-xs md:text-sm lg:text-base;
+    @apply gap-2 grid grid-cols-4 md:grid-cols-5 mb-5 text-xs md:text-sm lg:text-base;
   }
 
   select {
