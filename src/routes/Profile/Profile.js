@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { Navigate, NavLink, Outlet, useNavigate, } from 'react-router-dom'
 import { Button } from '../../components'
 import { useAuth } from '../../hooks'
+import { resetAddresses } from '../../store/actions/addressActions'
+import { resetCards } from '../../store/actions/cardActions'
 import { resetCart } from '../../store/actions/cartAction'
 import { logout } from '../../store/actions/userActions'
 
@@ -37,6 +39,8 @@ const Profile = () => {
   const handleLogout = () => {
     dispatch(logout())
     dispatch(resetCart())
+    dispatch(resetCards())
+    dispatch(resetAddresses())
     navigate('/user/login')
   }
 
