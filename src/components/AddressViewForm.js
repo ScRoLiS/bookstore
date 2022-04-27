@@ -15,7 +15,7 @@ const AddressViewForm = ({ address }) => {
           <AddressPart label="Улица" value={address.address.whereTo.street} />
           <div className="flex flex-col sm:flex-row gap-2">
             <AddressPart label="Дом" value={address.address.whereTo.home} />
-            <AddressPart label="Квартира" value={address.address.whereTo.flat} />
+            {address.address.whereTo.flat && <AddressPart label="Квартира" value={address.address.whereTo.flat} />}
           </div>
         </div>
         <div className="flex flex-col gap-2 grow">
