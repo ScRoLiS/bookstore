@@ -3,8 +3,8 @@ import { ProfilePage } from '../../containers'
 
 const UserProfile = () => {
   return (
-    <ProfilePage title="Личные данные">
-
+    <ProfilePage title="Данные профиля">
+      
     </ProfilePage>
   )
 }
