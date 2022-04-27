@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { Footer, Message, Navbar } from './components';
 import { useAuth } from './hooks';
-import { Home, Login, Cart, PageNotFound, Book, Registration } from './routes';
+import { Home, Login, Cart, PageNotFound, Book, Registration, Checkout } from './routes';
 import { Purchases, UserProfile, Profile } from './routes/Profile';
 import { Addresses, AddAddress, ViewAddresses } from './routes/Profile/Addresses';
 import { Cards, AddCard, ViewCards } from './routes/Profile/Cards'
@@ -61,6 +61,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="registration" element={<Registration />} />
           </Route>
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/book/:id" element={<Book />} />
           <Route path="*" element={<PageNotFound />} />
