@@ -43,14 +43,15 @@
   }
 
   .link-profile {
-    @apply rounded-md p-2 relative bg-sky-50 hover:bg-sky-100 md:text-sm lg:text-base;
+    @apply rounded-md p-2 relative bg-sky-50 hover:bg-sky-100 grow md:grow-0 text-sm lg:text-base;
   }
 
   .link-profile-active {
     @apply link-profile relative text-white font-medium rounded-l-md p-2 bg-sky-400 hover:bg-sky-400;
   }
-
+/* 
   .link-profile-active::before {
+    @apply hidden md:block;
     content: '';
     position: absolute;
     right: 0;
@@ -60,7 +61,7 @@
     border-style: solid;
     border-width: 20px 20px 20px 0;
     border-color: transparent #ffffff transparent transparent;
-  }
+  } */
 
   .button {
     @apply flex items-center justify-center text-xs font-medium shrink-0 text-white p-2 bg-sky-400 rounded-md hover:bg-sky-300;
@@ -97,7 +98,7 @@
   }
 
   .input-card {
-    @apply input rounded-md border-none;
+    @apply input text-xs md:text-sm rounded-md border-none;
   }
 
   .input:focus {

@@ -33,7 +33,7 @@ const Navbar = () => {
 
   if (showMenu) {
     return (
-      <nav className="fixed z-10 overflow-y-auto min-h-screen min-w-screen left-0 top-0 right-0 bottom-0 bg-white">
+      <nav className="fixed z-40 overflow-y-auto min-h-screen min-w-screen left-0 top-0 right-0 bottom-0 bg-white">
         <div className="container min-h-full p-2 flex flex-col gap-4">
           <Button onClick={toggleMenu} className="self-end mt-2" type="outline" ><MdOutlineClose className="" /></Button>
           <ul className="list-none grow flex-col flex gap-2">
@@ -64,8 +64,8 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="sticky top-0 shadow-md bg-white z-10">
-      <div className="container flex gap-2 justify-between items-center h-16 md:h-24">
+    <nav className="sticky top-0 shadow-md bg-white z-40">
+      <div className="container flex flex-wrap gap-2 justify-between items-center py-4 md:py-0 md:h-24">
         <Link className="flex flex-col" to="/">
           <div className="flex gap-1 xl:gap-2 items-center font-bold text-base md:text-2xl">
             <BsBookHalf className="text-sky-400 md:mt-1" />
@@ -75,37 +75,40 @@ const Navbar = () => {
             BookStore - магазин твоей мечты!
           </div>
         </Link>
-        <ul className="list-none hidden md:flex gap-2">
-          {menu.map((item, index) => {
-            return (
-              <li key={index} >
-                <NavLink to={item.to} className={linkStyleSwich}>
-                  {item.icon}
-                  <span>{isAuth && item.auth ? item.auth.label : item.label}</span>
-                </NavLink>
-              </li>
-            )
-          })}
-          <li>
-            <NavLink to="/cart" className={linkStyleSwich}>
+        <div className="flex gap-2">
+          <ul className="list-none hidden md:flex gap-2">
+            {menu.map((item, index) => {
+              return (
+                <li key={index} >
+                  <NavLink to={item.to} className={linkStyleSwich}>
+                    {item.icon}
+                    <span>{isAuth && item.auth ? item.auth.label : item.label}</span>
+                  </NavLink>
+                </li>
+              )
+            })}
+            <li>
+              <NavLink to="/cart" className={linkStyleSwich}>
+                <div className="flex items-center">
+                  <BsCart3 className="text-xl" />
+                  {cart.length ? <span className="cart-size">+{cart.length}</span> : null}
+                </div>
+                <span>Корзина</span>
+              </NavLink>
+            </li>
+          </ul>
+          {cart.length
+            ? <NavLink to="/cart" className={cartStyleSwich}>
               <div className="flex items-center">
                 <BsCart3 className="text-xl" />
                 {cart.length ? <span className="cart-size">+{cart.length}</span> : null}
               </div>
-              <span>Корзина</span>
             </NavLink>
-          </li>
-        </ul>
-        {cart.length
-          ? <NavLink to="/cart" className={cartStyleSwich}>
-            <div className="flex items-center">
-              <BsCart3 className="text-xl" />
-              {cart.length ? <span className="cart-size">+{cart.length}</span> : null}
-            </div>
-          </NavLink>
-          : null
-        }
-        <Button onClick={toggleMenu} className="block md:hidden" type="outline" ><GiHamburgerMenu /></Button>
+            : null
+          }
+          <Button onClick={toggleMenu} className="block md:hidden" type="outline" ><GiHamburgerMenu /></Button>
+        </div>
+
       </div>
     </nav>
   )

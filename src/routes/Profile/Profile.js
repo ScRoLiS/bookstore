@@ -44,15 +44,15 @@ const Profile = () => {
     return <Navigate to="/user/login" />
 
   return (
-    <div className="bg-white rounded-md shadow-md p-4 flex flex-col grow">
-      <div className="flex gap-8 grow">
-        <div className="flex flex-col w-52 gap-2 shrink-0">
-          <div className="flex flex-col gap-2 sticky top-28">
+    <div className="bg-white rounded-md shadow-md p-4 flex flex-col min-h-[600px] md:min-h-[auto] md:grow">
+      <div className="flex flex-col md:flex-row gap-8 grow">
+        <div className="flex flex-row md:flex-col md:w-40 lg:w-52 gap-2 shrink-0">
+          <div className="flex flex-wrap flex-row w-full md:w-auto md:flex-col gap-2 sticky top-28">
             {menu.map((item, index) => <NavLink className={switchLinkStyle} to={item.to} key={index}>{item.label}</NavLink>)}
-            <Button type="ghost" className="w-full" onClick={handleLogout}>Выход</Button>
+            <Button type="ghost" className="grow w-auto h-[35px] md:h-auto md:grow-0 md:w-full" onClick={handleLogout}>Выход</Button>
           </div>
         </div>
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col grow">
           <Outlet />
         </div>
       </div>

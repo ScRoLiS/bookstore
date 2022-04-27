@@ -122,12 +122,12 @@ const Footer = () => {
   return (
     <footer className="bg-white py-6">
       <div className="container items-center md:items-start flex gap-4 flex-col md:flex-row">
-        <div className="flex flex-col items-center w-56 shrink-0">
+        <div className="flex flex-col items-center max-w-[250px] shrink-0">
           <div className="flex gap-1 items-center font-bold text-base md:text-md">
             <BsBookHalf className="text-sky-400 mt-0.5 md:mt-0.5" />
             <span>BOOK<span className="text-sky-400">STORE</span></span>
           </div>
-          <div className="font-light text-base text-center mt-2 md:mt-0 ">
+          <div className="font-light text-sm md:text-base text-center mt-2 md:mt-0 ">
             BookStore - простой и удобный, лучший книжный интернет-магазин! Надеюсь после этого проекта, я найду работу получше.
           </div>
         </div>
