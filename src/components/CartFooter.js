@@ -1,11 +1,18 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks'
+import { setForward } from '../store/actions/appActions'
 import Button from './Button'
 
 const CartFooter = ({ items }) => {
+  const auth = useAuth()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const checkoutHandle = () => {
+    if(!auth)
+      dispatch(setForward('/checkout'))
     navigate('/checkout')
   }
 

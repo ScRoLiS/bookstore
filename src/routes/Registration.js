@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Button, Input, Spinner } from '../components'
 import { useAuth, useInput } from '../hooks'
 import API from '../services/api'
+import { resetForward } from '../store/actions/appActions'
 import { addMessage } from '../store/actions/messageActions'
 import { login } from '../store/actions/userActions'
 
@@ -11,19 +12,27 @@ const Registration = () => {
   const isAuth = useAuth()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const [isLoading, setLoading] = useState(false)
-  const { cart } = useSelector(state => state.cart)
   const [email, handleEmail] = useInput('')
   const [username, handleUsername] = useInput('')
   const [password, handlePassword] = useInput('')
   const [passwordRepeat, handlePasswordRepeat] = useInput('')
+
+  const { forward } = useSelector(state => state.app)
+  const { cart } = useSelector(state => state.cart)
 
   const handleRegister = (e) => {
     setLoading(true)
     API.register(email, username, password)
       .then((data) => {
         dispatch(login(data))
-        navigate('/user/profile')
+        if (forward) {
+          dispatch(resetForward())
+          navigate('/checkout')
+        } else {
+          navigate('/user/profile')
+        }
       })
       .catch(({ message }) => {
         console.log(message);
