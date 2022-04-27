@@ -35,17 +35,17 @@ const ViewCards = () => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col">
-        <div className="card-table-row font-semibold">
-          <div>Владелец</div>
-          <div>Номер</div>
-          <div>Годен до</div>
+        <div className="card-table-row col-auto font-semibold">
+          <div className="table-col">Владелец</div>
+          <div className="table-col">Номер</div>
+          <div className="table-col">Годен до</div>
         </div>
         {cards.map((item) => {
           return (
             <div key={item.id} className="card-table-row">
-              <div>{item.name}</div>
-              <div>{item.number}</div>
-              <div>{item.date}</div>
+              <div className="table-col">{item.name}</div>
+              <div className="table-col">{item.number}</div>
+              <div className="table-col">{item.date}</div>
               <div className="text-center">
                 <Button onClick={() => { removeHandle(item.id) }} type="link" className="border-none text-red-600 hover:text-red-200 hover:border-none">Удалить</Button>
               </div>

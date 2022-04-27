@@ -40,18 +40,18 @@ const ViewAddresses = () => {
       <div className="flex flex-col items-center">
         <div className="w-full">
           <div className="adress-table-row font-medium">
-            <div>Страна</div>
-            <div>Город</div>
-            <div>Улица</div>
-            <div>Дом</div>
+            <div className="table-col">Страна</div>
+            <div className="table-col">Город</div>
+            <div className="table-col">Улица</div>
+            <div className="table-col">Дом</div>
           </div>
           {addresses.map((item) => {
             const { country, city, street, home } = item.address.whereTo
             return (
               <div key={item.id} className="adress-table-row">
-                <div>{country}</div>
-                <div>{city}</div>
-                <div>{street}</div>
+                <div className="table-col">{country}</div>
+                <div className="table-col">{city}</div>
+                <div className="table-col">{street}</div>
                 <div>{home}</div>
                 <div>
                   <Link to={`/user/addresses/${item.id}`} className="link mr-3 border-none text-sky-600 hover:text-sky-200 hover:border-none">Подробнее</Link>
