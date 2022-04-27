@@ -52,9 +52,9 @@ const Checkout = () => {
     <div className="p-4 rounded-md shadow-md bg-white grow">
       <h1 className="text-lg md:text-2xl font-semibold">Оформление заказа</h1>
       <div>
-        <div className=" mt-2">
-          <div className="flex items-center gap-2 mt-2">
-            <span className="whitespace-nowrap">Адрес доставки: </span>
+        <div className="mt-2">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 mt-2">
+            <span className="whitespace-nowrap text-sm md:text-base">Адрес доставки: </span>
             {!addresses.length && <Button onClick={addAddressHandler} type="link" className="ml-2">Добавить адрес</Button>}
             {addresses.length === 0 ? null : (
               <select className="select-checkout" value={addressSelect} onChange={setAddressSelect}>
@@ -68,8 +68,8 @@ const Checkout = () => {
             )}
           </div>
           <div>
-            <div className="flex items-center gap-2 mt-2">
-              <span className="whitespace-nowrap">Карта для оплаты: </span>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 mt-2">
+              <span className="whitespace-nowrap text-sm md:text-base">Карта для оплаты: </span>
               {!cards.length && <Button onClick={addCardHandler} type="link" className="ml-2">Добавить карту</Button>}
               {cards.length === 0 ? null : (
                 <select className="select-checkout" value={cardSelect} onChange={setCardSelect}>
