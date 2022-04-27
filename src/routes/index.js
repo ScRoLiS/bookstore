@@ -1,6 +1,7 @@
 export { default as Home } from './Home'
 export { default as Cart } from './Cart'
 export { default as Login } from './Login'
-export { default as Registration } from './Registration'
 export { default as Book } from './Book'
+export { default as Checkout } from './Checkout'
+export { default as Registration } from './Registration'
 export { default as PageNotFound } from './PageNotFound'
