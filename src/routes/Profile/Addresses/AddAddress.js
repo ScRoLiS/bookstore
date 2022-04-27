@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Button, Input, Spinner } from '../../../components'
 import { useInput } from '../../../hooks'
 import API from '../../../services/api'
 import { addAddress } from '../../../store/actions/addressActions'
+import { resetForward } from '../../../store/actions/appActions'
 import { addMessage } from '../../../store/actions/messageActions'
 
 const countries = [
@@ -263,6 +264,7 @@ const AddAddress = () => {
   const navigate = useNavigate()
   const store = useStore()
   const user = useSelector(state => state.user)
+  const { forward } = useSelector(state => state.app)
   const [isLoading, setLoading] = useState(false)
 
   const addAddressHandle = (e) => {
@@ -276,12 +278,16 @@ const AddAddress = () => {
       }
     }
 
-    dispatch(addAddress({ id:  Math.round(Math.random() * 10000), address }))
+    dispatch(addAddress({ id: Math.round(Math.random() * 10000), address }))
 
     API.updateAddresses(user.jwt, store.getState().addresses.addresses)
       .then(() => {
         dispatch(addMessage(Math.random(), 'success', 'Адрес сохранен!'))
-        navigate('/user/addresses')
+        if (forward) {
+          navigate(forward)
+        } else {
+          navigate('/user/addresses')
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -290,6 +296,12 @@ const AddAddress = () => {
         setLoading(false)
       })
   }
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetForward())
+    }
+  }, [])
 
   return (
     <div>

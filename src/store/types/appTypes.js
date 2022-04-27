@@ -1,0 +1,4 @@
+export const AppType = {
+  SET_FORWARD: 'SET_FORWARD',
+  RESET_FORWARD: 'RESET_FORWARD'
+}

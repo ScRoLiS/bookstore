@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Input, Spinner } from '../../../components'
 import { FaCcMastercard, FaCcVisa } from 'react-icons/fa'
 import { useDispatch, useSelector, useStore } from 'react-redux'
@@ -7,6 +7,7 @@ import { addCard } from '../../../store/actions/cardActions'
 import { useInput } from '../../../hooks'
 import { useNavigate } from 'react-router-dom'
 import API from '../../../services/api'
+import { resetForward } from '../../../store/actions/appActions'
 
 const AddCard = () => {
 
@@ -15,6 +16,7 @@ const AddCard = () => {
   const navigate = useNavigate()
   const store = useStore()
   const user = useSelector(state => state.user)
+  const { forward } = useSelector(state => state.app)
   const [name, nameHandle] = useInput('')
   const [number, numberHandle] = useInput('', 16)
   const [mm, mmHandle] = useInput('', 2)
@@ -34,7 +36,11 @@ const AddCard = () => {
     API.udpateCards(user.jwt, store.getState().cards.cards)
       .then(() => {
         dispatch(addMessage(Math.random(), 'success', 'Карта сохранена!'))
-        navigate('/user/cards')
+        if (forward) {
+          navigate(forward)
+        } else {
+          navigate('/user/cards')
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -53,7 +59,11 @@ const AddCard = () => {
     return !(yy.length === 0 || mm.length === 0 || cvv.length < 3 || number.length < 16)
   }
 
-  console.log(isValid());
+  useEffect(() => {
+    return () => {
+      dispatch(resetForward())
+    }
+  }, [])
 
   return (
     <form className="flex flex-col grow justify-center items-center">
