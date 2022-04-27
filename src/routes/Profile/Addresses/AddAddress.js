@@ -276,7 +276,7 @@ const AddAddress = () => {
       }
     }
 
-    dispatch(addAddress({ id:  Math.round(Math.random() * 1000), address }))
+    dispatch(addAddress({ id:  Math.round(Math.random() * 10000), address }))
 
     API.updateAddresses(user.jwt, store.getState().addresses.addresses)
       .then(() => {

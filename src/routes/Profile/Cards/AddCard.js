@@ -15,7 +15,6 @@ const AddCard = () => {
   const navigate = useNavigate()
   const store = useStore()
   const user = useSelector(state => state.user)
-  const [valid, setValid] = useState(false)
   const [name, nameHandle] = useInput('')
   const [number, numberHandle] = useInput('', 16)
   const [mm, mmHandle] = useInput('', 2)
@@ -26,7 +25,7 @@ const AddCard = () => {
     e.preventDefault()
     setLoading(true)
     dispatch(addCard({
-      id: Math.random(),
+      id: Math.round(Math.random() * 10000),
       name,
       number: number.substring(0, 4) + '********' + number.substring(12, 16),
       date: `${mm}/${yy}`,
@@ -70,9 +69,9 @@ const AddCard = () => {
           <Input value={name} onChange={nameHandle} className="input-card" placeholder="Имя владельца" />
           <Input value={number} onChange={numberHandle} onBlur={numberOnBlurHandle} className="input-card" type="number" placeholder="Номер карты" />
           <div className="flex items-center gap-2">
-            <Input value={mm} onChange={mmHandle} className="input-card" type="number" maxLength="2" placeholder="MM" />
+            <Input value={mm} onChange={mmHandle} className="input-card" type="number" placeholder="MM" />
             <span className="text-2xl text-gray-300">/</span>
-            <Input value={yy} onChange={yyHandle} className="input-card" type="number" maxLength="2" placeholder="YY" />
+            <Input value={yy} onChange={yyHandle} className="input-card" type="number" placeholder="YY" />
             <div className="hidden md:flex gap-2 text-5xl text-gray-400">
               <FaCcMastercard />
               <FaCcVisa />
@@ -80,7 +79,13 @@ const AddCard = () => {
           </div>
         </div>
       </div>
-      <Button disabled={isLoading | !isValid()} submit={true} onClick={handleSave} className="mt-4 min-w-[100px]">{isLoading ? <Spinner type="small" /> : 'Сохранить'}</Button>
+      <Button
+        disabled={isLoading | !isValid()}
+        submit={true} onClick={handleSave}
+        className="mt-4 min-w-[100px]"
+      >
+        {isLoading ? <Spinner type="small" /> : 'Сохранить'}
+      </Button>
     </form>
 
   )
