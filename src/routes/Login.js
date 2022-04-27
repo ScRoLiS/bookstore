@@ -15,8 +15,8 @@ const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [isLoading, setLoading] = useState(false)
-  const [email, handleEmail] = useInput('scrolis@mail.com')
-  const [password, handlePassword] = useInput('123456')
+  const [email, handleEmail] = useInput('')
+  const [password, handlePassword] = useInput('')
 
   const handleLogin = (e) => {
     setLoading(true)
