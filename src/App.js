@@ -12,6 +12,7 @@ import { setCards } from './store/actions/cardActions';
 import { setCart } from './store/actions/cartAction';
 import { login, logout } from './store/actions/userActions';
 import API from './services/api';
+import { addMessage } from './store/actions/messageActions';
 
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
   const { messages } = useSelector(state => state.messages)
 
   useEffect(() => {
-    if (isAuth)
+    if (isAuth) {
+      dispatch(addMessage(Math.random(), 'success', 'Идет загрузка данных...'))
       API.getUser(jwt)
         .then((data) => {
           const { cart, cards, addresses, purchases } = data
@@ -36,6 +38,7 @@ function App() {
           dispatch(logout())
           navigate('/')
         })
+    }
   }, [])
 
   return (
