@@ -42,7 +42,7 @@ const ViewCards = () => {
         </div>
         {cards.map((item) => {
           return (
-            <div key={item.id} className="card-table-row">
+            <div key={item.id} className="card-table-row  shadow-sm p-2 rounded-md">
               <div className="table-col">{item.name}</div>
               <div className="table-col">{item.number}</div>
               <div className="table-col">{item.date}</div>
