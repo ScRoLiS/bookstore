@@ -1,6 +1,6 @@
 export default class API {
 
-  static baseUrl = process.env.BASE_URL
+  static baseUrl = process.env.NODE_ENV === 'production' ? 'https://bookstore-api-server.herokuapp.com' : 'http://localhost:1337'
 
   static getBooks = async () => {
     const req = await fetch(this.baseUrl + `/api/books?sort=id:asc`)
