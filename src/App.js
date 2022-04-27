@@ -25,11 +25,11 @@ function App() {
     if (isAuth)
       API.getUser(jwt)
         .then((data) => {
-          const { cart, cards, adresses } = data
+          const { cart, cards, addresses, purchases } = data
           dispatch(login({ user: data, jwt }))
           dispatch(setCart(cart))
           dispatch(setCards(cards))
-          dispatch(setAddresses(adresses))
+          dispatch(setAddresses(addresses))
         })
         .catch((e) => {
           console.log(e);
