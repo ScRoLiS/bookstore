@@ -61,7 +61,7 @@ const ViewAddresses = () => {
             )
           })}
         </div>
-        <Link className="button" to="/user/addresses/add">Добавить</Link>
+        <Link className="button mt-4" to="/user/addresses/add">Добавить</Link>
       </div>
     </div>
   )

@@ -15,11 +15,12 @@ const AddCard = () => {
   const navigate = useNavigate()
   const store = useStore()
   const user = useSelector(state => state.user)
+  const [valid, setValid] = useState(false)
   const [name, nameHandle] = useInput('')
-  const [number, numberHandle] = useInput('')
-  const [mm, mmHandle] = useInput('')
-  const [yy, yyHandle] = useInput('')
-  const [cvv, cvvHandle] = useInput('')
+  const [number, numberHandle] = useInput('', 16)
+  const [mm, mmHandle] = useInput('', 2)
+  const [yy, yyHandle] = useInput('', 2)
+  const [cvv, cvvHandle] = useInput('', 3)
 
   const handleSave = (e) => {
     e.preventDefault()
@@ -44,6 +45,17 @@ const AddCard = () => {
       })
   }
 
+  const numberOnBlurHandle = (e) => {
+    if (number.length < 16)
+      dispatch(addMessage(Math.random(), 'error', 'Номер карты должен быть не менее 16 символов!'))
+  }
+
+  const isValid = () => {
+    return !(yy.length === 0 || mm.length === 0 || cvv.length < 3 || number.length < 16)
+  }
+
+  console.log(isValid());
+
   return (
     <form className="flex flex-col grow justify-center items-center">
       <div className="flex flex-col lg:block items-center relative overflow-visible">
@@ -56,10 +68,10 @@ const AddCard = () => {
         </div>
         <div className="rounded-lg z-10 mb-20 lg:absolute top-0 bg-gray-200 flex flex-col justify-between gap-2 shadow-md w-full md:w-96 h-44 md:h-56 p-8">
           <Input value={name} onChange={nameHandle} className="input-card" placeholder="Имя владельца" />
-          <Input value={number} onChange={numberHandle} className="input-card" type="number" placeholder="Номер карты" />
+          <Input value={number} onChange={numberHandle} onBlur={numberOnBlurHandle} className="input-card" type="number" placeholder="Номер карты" />
           <div className="flex items-center gap-2">
             <Input value={mm} onChange={mmHandle} className="input-card" type="number" maxLength="2" placeholder="MM" />
-            <span className="text-2xl">/</span>
+            <span className="text-2xl text-gray-300">/</span>
             <Input value={yy} onChange={yyHandle} className="input-card" type="number" maxLength="2" placeholder="YY" />
             <div className="hidden md:flex gap-2 text-5xl text-gray-400">
               <FaCcMastercard />
@@ -68,7 +80,7 @@ const AddCard = () => {
           </div>
         </div>
       </div>
-      <Button disabled={isLoading} submit={true} onClick={handleSave} className="mt-4 min-w-[100px]">{isLoading ? <Spinner type="small" /> : 'Сохранить'}</Button>
+      <Button disabled={isLoading | !isValid()} submit={true} onClick={handleSave} className="mt-4 min-w-[100px]">{isLoading ? <Spinner type="small" /> : 'Сохранить'}</Button>
     </form>
 
   )
