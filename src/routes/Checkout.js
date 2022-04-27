@@ -41,6 +41,10 @@ const Checkout = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
     setAddress(getAddressById(addressSelect))
   }, [addressSelect])
 
