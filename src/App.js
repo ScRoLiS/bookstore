@@ -5,7 +5,7 @@ import { Footer, Message, Navbar } from './components';
 import { useAuth } from './hooks';
 import { Home, Login, Cart, PageNotFound, Book, Registration, Checkout } from './routes';
 import { Purchases, UserProfile, Profile } from './routes/Profile';
-import { Addresses, AddAddress, ViewAddresses } from './routes/Profile/Addresses';
+import { Addresses, AddAddress, ViewAddresses, AddressDetails } from './routes/Profile/Addresses';
 import { Cards, AddCard, ViewCards } from './routes/Profile/Cards'
 import { setAddresses } from './store/actions/addressActions';
 import { setCards } from './store/actions/cardActions';
@@ -53,6 +53,7 @@ function App() {
               <Route path="addresses" element={<Addresses />}>
                 <Route index element={<ViewAddresses />} />
                 <Route path="add" element={<AddAddress />} />
+                <Route path=":id" element={<AddressDetails />} />
               </Route>
               <Route path="" element={<Navigate to="/user/profile" />} />
               <Route path="purchases" element={<Purchases />} />
