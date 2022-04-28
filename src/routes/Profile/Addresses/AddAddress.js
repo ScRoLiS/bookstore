@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { Button, Input, Spinner } from '../../../components'
+import { Button, Input, LinkBack, Spinner } from '../../../components'
 import { useInput } from '../../../hooks'
 import API from '../../../services/api'
 import { addAddress } from '../../../store/actions/addressActions'
@@ -305,7 +305,8 @@ const AddAddress = () => {
 
   return (
     <div>
-      <form className="">
+      <form>
+        <LinkBack />
         <div className="flex flex-col lg:flex-row gap-6">
           <div className="lg:w-1/2">
             <h1 className="font-medium mb-6">Куда</h1>

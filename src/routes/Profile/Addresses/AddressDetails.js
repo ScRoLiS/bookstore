@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, useParams } from 'react-router-dom'
+import { LinkBack } from '../../../components'
 import AddressViewForm from '../../../components/AddressViewForm'
 
 const AddressDetails = () => {
@@ -18,11 +19,15 @@ const AddressDetails = () => {
     return null
   }
 
-  if(!address)
+  if (!address)
     return <Navigate to="/error" />
 
   return (
-    <AddressViewForm address={address} />
+    <div>
+      <LinkBack />
+      <AddressViewForm address={address} />
+    </div>
+
   )
 }
 
