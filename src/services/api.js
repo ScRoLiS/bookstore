@@ -38,22 +38,27 @@ export default class API {
     return data
   }
 
-  static register = async (email, username, password) => {
+  static register = async (email, username, password, cart) => {
     const body = { email, username, password }
-    const req = await fetch(this.baseUrl + `/api/auth/local/register`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body)
-    })
 
-    const data = await req.json()
+    try {
 
-    if (req.status !== 200)
-      throw new Error(data.error.message)
+      const req = await fetch(this.baseUrl + `/api/auth/local/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body)
+      })
 
-    return data
+      const data = await req.json()
+      const newReq = await API.udpateCart(data.jwt, cart)
+
+      return { jwt: data.jwt, user: newReq }
+
+    } catch (e) {
+      throw new Error(e)
+    }
   }
 
   static getUser = async (jwt) => {
