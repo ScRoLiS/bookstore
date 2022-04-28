@@ -5,6 +5,7 @@ import { Button, Input, Spinner } from '../components'
 import { useAuth, useInput } from '../hooks'
 import API from '../services/api'
 import { resetForward } from '../store/actions/appActions'
+import { setCart } from '../store/actions/cartAction'
 import { addMessage } from '../store/actions/messageActions'
 import { login } from '../store/actions/userActions'
 
@@ -24,9 +25,10 @@ const Registration = () => {
 
   const handleRegister = (e) => {
     setLoading(true)
-    API.register(email, username, password)
+    API.register(email, username, password, cart)
       .then((data) => {
         dispatch(login(data))
+        dispatch(setCart(data.user.cart))
         if (forward) {
           dispatch(resetForward())
           navigate('/checkout')
@@ -34,7 +36,7 @@ const Registration = () => {
           navigate('/user/profile')
         }
       })
-      .catch(({ message }) => {
+      .catch((message) => {
         console.log(message);
         if (message === 'Please provide a valid email address' || message === 'email must be a valid email') {
           dispatch(addMessage(Math.random(), 'error', 'Введен неправильный email'))
