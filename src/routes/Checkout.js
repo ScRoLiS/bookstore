@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { Button, AddressViewForm } from '../components'
+import { Button, AddressViewForm, Spinner } from '../components'
 import { useAuth, useInput } from '../hooks'
 import { setForward } from '../store/actions/appActions'
 import { addMessage } from '../store/actions/messageActions'
@@ -11,6 +11,7 @@ const Checkout = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const [isLoading, setLoading] = useState(false)
   const [addressSelect, setAddressSelect] = useInput('default')
   const [cardSelect, setCardSelect] = useInput('default')
   const [address, setAddress] = useState(null)
@@ -47,6 +48,7 @@ const Checkout = () => {
   }
 
   const payHandle = () => {
+    setLoading(true)
     dispatch(addMessage(Math.random(), 'success', 'Оплата произведена!'))
     dispatch(addMessage(Math.random(), 'success', 'Заказ в обработке!'))
   }
@@ -129,11 +131,11 @@ const Checkout = () => {
             </div>
             <div className="flex mt-2 justify-center sm:justify-end">
               <Button
-                disabled={!card}
+                disabled={!card || isLoading}
                 className="md:text-base w-full max-w-[200px]"
                 onClick={payHandle}
               >
-                {!card ? 'Выберите карту' : `Оплатить ${finalPrice()} тг.`}
+                {!card ? 'Выберите карту' : (isLoading ? <Spinner type="medium" /> : `Оплатить ${finalPrice()} тг.`)}
               </Button>
             </div>
           </div>
