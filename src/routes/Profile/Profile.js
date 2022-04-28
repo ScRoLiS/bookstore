@@ -53,7 +53,7 @@ const Profile = () => {
         <div className="flex flex-row md:flex-col md:w-40 lg:w-52 gap-2 shrink-0">
           <div className="flex flex-wrap flex-row w-full md:w-auto md:flex-col gap-2 sticky top-28">
             {menu.map((item, index) => <NavLink className={switchLinkStyle} to={item.to} key={index}>{item.label}</NavLink>)}
-            <Button type="ghost" className="grow w-auto h-[35px] md:h-auto md:grow-0 md:w-full" onClick={handleLogout}>Выход</Button>
+            <Button type="ghost" className="grow w-auto h-[32px] md:h-auto md:grow-0 md:w-full" onClick={handleLogout}>Выход</Button>
           </div>
         </div>
         <div className="flex flex-col grow">
