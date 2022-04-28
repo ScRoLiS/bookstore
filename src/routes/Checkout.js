@@ -11,13 +11,19 @@ const Checkout = () => {
   const isAuth = useAuth()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const [addressSelect, setAddressSelect] = useInput('default')
   const [cardSelect, setCardSelect] = useInput('default')
   const [address, setAddress] = useState(null)
   const [card, setCard] = useState(null)
+
   const { cart } = useSelector(state => state.cart)
   const { addresses } = useSelector(state => state.addresses)
   const { cards } = useSelector(state => state.cards)
+
+  const finalPrice = () => {
+    return cart.reduce((prev, current) => { return prev + current.count * current.price }, 0)
+  }
 
   const addCardHandler = () => {
     dispatch(setForward('/checkout'))
@@ -122,10 +128,16 @@ const Checkout = () => {
             <div className="flex items-center">
               <span className="shrink-0">Сумма к оплате:</span>
               <div className="w-full border-dotted border-t-2 mx-2 mt-1"></div>
-              <span className="shrink-0">{cart.reduce((prev, current) => { return prev + current.count * current.price }, 0)} тг.</span>
+              <span className="shrink-0">{finalPrice()} тг.</span>
             </div>
             <div className="flex mt-2 justify-center sm:justify-end">
-              <Button disabled={!card} className="md:text-base w-full max-w-[200px]" onClick={payHandle}>{!card ? 'Выберите карту' : 'Оплатить'}</Button>
+              <Button
+                disabled={!card}
+                className="md:text-base w-full max-w-[200px]"
+                onClick={payHandle}
+              >
+                {!card ? 'Выберите карту' : `Оплатить ${finalPrice()} тг.`}
+              </Button>
             </div>
           </div>
         </div>
