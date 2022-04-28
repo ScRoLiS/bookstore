@@ -64,8 +64,6 @@ const Checkout = () => {
     return <Navigate to="/user" />
   }
 
-  console.log(cardSelect);
-
   return (
     <div className="p-4 rounded-md shadow-md bg-white grow">
       <h1 className="text-lg md:text-2xl font-semibold">Оформление заказа</h1>
