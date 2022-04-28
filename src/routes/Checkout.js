@@ -95,7 +95,6 @@ const Checkout = () => {
           </div>
         </div>
       </div>
-
       {address && (
         <div>
           <AddressViewForm address={address} />
@@ -114,22 +113,20 @@ const Checkout = () => {
               )
             })}
           </div>
-        </div>
-      )}
-      {!address ? null : (
-        <div className="flex flex-col gap-2 mt-2">
-          <div className="flex items-center">
-            <span className="shrink-0">Общее количество:</span>
-            <div className="w-full border-dotted border-t-2 mx-2 mt-1"></div>
-            <span className="shrink-0">{cart.reduce((prev, current) => { return prev + current.count }, 0)} шт.</span>
-          </div>
-          <div className="flex items-center">
-            <span className="shrink-0">Сумма к оплате:</span>
-            <div className="w-full border-dotted border-t-2 mx-2 mt-1"></div>
-            <span className="shrink-0">{cart.reduce((prev, current) => { return prev + current.count * current.price }, 0)} тг.</span>
-          </div>
-          <div className="flex mt-2 justify-center sm:justify-end">
-            <Button disabled={!card} className="md:text-base w-full max-w-[200px]" onClick={payHandle}>{!card ? 'Выберите карту' : 'Оплатить'}</Button>
+          <div className="flex flex-col gap-2 mt-2">
+            <div className="flex items-center">
+              <span className="shrink-0">Общее количество:</span>
+              <div className="w-full border-dotted border-t-2 mx-2 mt-1"></div>
+              <span className="shrink-0">{cart.reduce((prev, current) => { return prev + current.count }, 0)} шт.</span>
+            </div>
+            <div className="flex items-center">
+              <span className="shrink-0">Сумма к оплате:</span>
+              <div className="w-full border-dotted border-t-2 mx-2 mt-1"></div>
+              <span className="shrink-0">{cart.reduce((prev, current) => { return prev + current.count * current.price }, 0)} тг.</span>
+            </div>
+            <div className="flex mt-2 justify-center sm:justify-end">
+              <Button disabled={!card} className="md:text-base w-full max-w-[200px]" onClick={payHandle}>{!card ? 'Выберите карту' : 'Оплатить'}</Button>
+            </div>
           </div>
         </div>
       )}
