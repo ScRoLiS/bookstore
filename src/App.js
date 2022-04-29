@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import { Footer, Message } from './components';
-import { Navbar } from './components/Navbar'
+import { Footer, Message, Navbar } from './components';
 import { useAuth } from './hooks';
 import { Home, Login, Cart, PageNotFound, Book, Registration, Checkout } from './routes';
 import { Purchases, UserProfile, Profile } from './routes/Profile';
@@ -73,9 +73,11 @@ function App() {
       </div>
       <Footer />
       <div className="flex flex-col gap-2 fixed bottom-2 z-30 left-1/2 -translate-x-1/2">
-        {messages.map((item) => {
-          return <Message key={item.id} {...item} />
-        })}
+        <AnimatePresence>
+          {messages.map((item) => {
+            return <Message key={item.id} {...item} />
+          })}
+        </AnimatePresence>
       </div>
     </div>
   );
