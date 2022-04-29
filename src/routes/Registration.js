@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { BiShow } from 'react-icons/bi'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Button, Input, Spinner } from '../components'
@@ -14,6 +15,7 @@ const Registration = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const [showPass, setShowPass] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [email, handleEmail] = useInput('')
   const [username, handleUsername] = useInput('')
@@ -51,6 +53,11 @@ const Registration = () => {
       })
   }
 
+  const switchPassword = (e) => {
+    e.preventDefault()
+    setShowPass(state => !state)
+  }
+
   if (isAuth)
     return <Navigate to="/user/profile" />
 
@@ -61,8 +68,16 @@ const Registration = () => {
         <span className="text-xl">Регистрация</span>
         <Input value={email} onChange={handleEmail} placeholder="Email" type="email" />
         <Input value={username} onChange={handleUsername} placeholder="Имя пользователя" type="text" />
-        <Input value={password} onChange={handlePassword} placeholder="Пароль" type="password" />
-        <Input value={passwordRepeat} onChange={handlePasswordRepeat} placeholder="Повторите пароль" type="password" />
+        <div className="w-full relative">
+          <Input value={password} onChange={handlePassword} placeholder="Пароль" type={`${showPass ? 'text' : 'password'}`} />
+          <button
+            onClick={switchPassword}
+            className={`mr-2 p-1 absolute right-0 top-1/2 -translate-y-1/2 border border-sky-200 rounded-md ${showPass ? 'bg-sky-400' : ''}`}
+          >
+            <BiShow className={`${showPass ? 'text-white' : 'text-sky-400'}`} />
+          </button>
+        </div>
+        <Input value={passwordRepeat} onChange={handlePasswordRepeat} placeholder="Повторите пароль" type={`${showPass ? 'text' : 'password'}`} />
         <Button submit={true} disabled={isLoading} onClick={handleRegister} className="w-full mt-2">{isLoading ? <Spinner type="small" /> : 'Зарегистрироваться'}</Button>
         <div className="text-sm flex gap-1 flex-wrap justify-center">
           <span>Есть аккаунт?</span> <Link className="link" to="/user/login">Войти</Link>
