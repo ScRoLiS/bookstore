@@ -41,8 +41,6 @@ export default class API {
   static register = async (email, username, password, cart) => {
     const body = { email, username, password }
 
-    try {
-
       const req = await fetch(this.baseUrl + `/api/auth/local/register`, {
         method: 'POST',
         headers: {
@@ -56,9 +54,6 @@ export default class API {
 
       return { jwt: data.jwt, user: newReq }
 
-    } catch (e) {
-      throw new Error(e)
-    }
   }
 
   static getUser = async (jwt) => {
