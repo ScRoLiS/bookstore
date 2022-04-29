@@ -63,7 +63,7 @@ const Checkout = () => {
   }, [addressSelect, cardSelect])
 
   if (!isAuth || cart.length === 0) {
-    return <Navigate to="/user" />
+    return <Navigate to="/user/registration" />
   }
 
   return (
