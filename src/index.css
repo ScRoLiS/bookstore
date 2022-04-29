@@ -137,7 +137,7 @@
   }
 
   .purchase-table-row {
-    @apply gap-2 grid grid-cols-3 text-xs md:text-sm lg:text-base;
+    @apply gap-2 grid grid-cols-4 text-xs md:text-sm lg:text-base;
   }
 
   .adress-table-row {
