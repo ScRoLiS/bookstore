@@ -38,15 +38,8 @@ const Registration = () => {
           navigate('/user/profile')
         }
       })
-      .catch((message) => {
-        console.log(message);
-        if (message === 'Please provide a valid email address' || message === 'email must be a valid email') {
-          dispatch(addMessage(Math.random(), 'error', 'Введен неправильный email'))
-        } else if (message === 'Email is already taken') {
-          dispatch(addMessage(Math.random(), 'error', 'Такой email уже занят'))
-        } else if (message === 'An error occurred during account creation') {
-          dispatch(addMessage(Math.random(), 'error', 'Такое имя пользователя занято'))
-        }
+      .catch(({ message }) => {
+        dispatch(addMessage(Math.random(), 'error', 'Введен неправильный email или имя пользователя'))
       })
       .finally(() => {
         setLoading(false)
@@ -56,6 +49,10 @@ const Registration = () => {
   const switchPassword = (e) => {
     e.preventDefault()
     setShowPass(state => !state)
+  }
+
+  const isValid = () => {
+    return !((password.length > 0 && passwordRepeat.length > 0 && username.length > 0 && email.length > 0) && (password === passwordRepeat))
   }
 
   if (isAuth)
@@ -78,7 +75,7 @@ const Registration = () => {
           </button>
         </div>
         <Input value={passwordRepeat} onChange={handlePasswordRepeat} placeholder="Повторите пароль" type={`${showPass ? 'text' : 'password'}`} />
-        <Button submit={true} disabled={isLoading} onClick={handleRegister} className="w-full mt-2">{isLoading ? <Spinner type="small" /> : 'Зарегистрироваться'}</Button>
+        <Button submit={true} disabled={isLoading || isValid()} onClick={handleRegister} className="w-full mt-2">{isLoading ? <Spinner type="small" /> : 'Зарегистрироваться'}</Button>
         <div className="text-sm flex gap-1 flex-wrap justify-center">
           <span>Есть аккаунт?</span> <Link className="link" to="/user/login">Войти</Link>
         </div>

@@ -9,6 +9,7 @@ import { addMessage } from '../store/actions/messageActions'
 import { setCart } from '../store/actions/cartAction'
 import { setCards } from '../store/actions/cardActions'
 import { setAddresses } from '../store/actions/addressActions'
+import { setPurchases } from '../store/actions/purchaseActions'
 
 const Login = () => {
   const isAuth = useAuth()
@@ -26,11 +27,12 @@ const Login = () => {
         dispatch(setCart(data.user.cart))
         dispatch(setCards(data.user.cards))
         dispatch(setAddresses(data.user.addresses))
+        dispatch(setPurchases(data.user.purchases))
         dispatch(addMessage(Math.random(), 'success', 'Вход выполнен успешно!'))
         navigate('/user/profile')
       })
       .catch((e) => {
-        dispatch(addMessage(Math.random(), 'error', 'Неверный логин или пароль!'))
+        dispatch(addMessage(Math.random(), 'error', 'Неверный email или пароль!'))
       })
       .finally(() => {
         setLoading(false)
