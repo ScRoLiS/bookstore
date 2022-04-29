@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Button, Footer } from './'
+import { Button } from '..'
 import { Link, NavLink } from 'react-router-dom'
 import { BsBookHalf, BsCart3 } from 'react-icons/bs'
 import { AiOutlineUser } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import { MdOutlineClose } from 'react-icons/md';
-import { useAuth } from '../hooks'
+import { useAuth } from '../../hooks'
+import NavbarMenu from './NavbarMenu'
 
 const menu = [
   { to: '/', label: 'Магазин', icon: <BsBookHalf className="text-xl" /> },
@@ -33,33 +33,13 @@ const Navbar = () => {
 
   if (showMenu) {
     return (
-      <nav className="fixed z-40 overflow-y-auto min-h-screen min-w-screen left-0 top-0 right-0 bottom-0 bg-white">
-        <div className="container min-h-full p-2 flex flex-col gap-4">
-          <Button onClick={toggleMenu} className="self-end mt-2" type="outline" ><MdOutlineClose className="" /></Button>
-          <ul className="list-none grow flex-col flex gap-2">
-            {menu.map((item, index) => {
-              return (
-                <li key={index} onClick={toggleMenu}>
-                  <NavLink to={item.to} className={linkStyleSwich}>
-                    {item.icon}
-                    <span>{isAuth && item.auth ? item.auth.label : item.label}</span>
-                  </NavLink>
-                </li>
-              )
-            })}
-            <li onClick={toggleMenu}>
-              <NavLink to="/cart" className={linkStyleSwich}>
-                <div className="flex items-center">
-                  <BsCart3 className="text-xl" />
-                  {cart.length ? <span className="cart-size">+{cart.length}</span> : null}
-                </div>
-                <span>Корзина</span>
-              </NavLink>
-            </li>
-          </ul>
-          <Footer />
-        </div>
-      </nav>
+      <NavbarMenu 
+        cart={cart}
+        menu={menu}
+        toggleMenu={toggleMenu}
+        isAuth={isAuth}
+        linkStyleSwich={linkStyleSwich}
+      />
     )
   }
 
@@ -108,7 +88,6 @@ const Navbar = () => {
           }
           <Button onClick={toggleMenu} className="block md:hidden" type="outline" ><GiHamburgerMenu /></Button>
         </div>
-
       </div>
     </nav>
   )

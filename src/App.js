@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import { Footer, Message, Navbar } from './components';
+import { Footer, Message } from './components';
+import { Navbar } from './components/Navbar'
 import { useAuth } from './hooks';
 import { Home, Login, Cart, PageNotFound, Book, Registration, Checkout } from './routes';
 import { Purchases, UserProfile, Profile } from './routes/Profile';
@@ -11,9 +12,8 @@ import { setAddresses } from './store/actions/addressActions';
 import { setCards } from './store/actions/cardActions';
 import { setCart } from './store/actions/cartAction';
 import { login, logout } from './store/actions/userActions';
-import API from './services/api';
 import { addMessage } from './store/actions/messageActions';
-
+import API from './services/api';
 
 function App() {
   const isAuth = useAuth()
