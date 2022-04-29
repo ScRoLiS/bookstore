@@ -29,7 +29,7 @@ const ViewPurchases = () => {
               <div>{item.id}</div>
               <div>{item.purchase.length}</div>
               <div>{item.status}</div>
-              <div><Link to={`/user/purchases/${item.id}`} className="link border-none text-sky-600 hover:text-sky-200 hover:border-none">Подробнее</Link></div>
+              <div className="flex"><Link to={`/user/purchases/${item.id}`} className="link ml-auto mr-2 border-none text-xs md:text-sm text-sky-600 hover:text-sky-200 hover:border-none">Подробнее</Link></div>
             </div>
           )
         })}
