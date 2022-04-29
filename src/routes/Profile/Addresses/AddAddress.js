@@ -268,7 +268,7 @@ const AddAddress = () => {
   const [isLoading, setLoading] = useState(false)
 
   const addAddressHandle = (e) => {
-    e.prevenDefault()
+    e.preventDefault()
 
     setLoading(true)
     const address = {
