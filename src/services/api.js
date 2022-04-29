@@ -6,7 +6,6 @@ export default class API {
     'Content-Type': 'application/json',
     'Content-Length': '<calculated when request is sent>',
     'Host': '<calculated when request is sent>',
-    'User-Agent': 'BookStore',
     'Accept': '*/*',
     'Accept-Encoding': 'gzip, deflate, br',
     'Connection': 'keep-alive'
