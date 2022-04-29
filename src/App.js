@@ -14,6 +14,8 @@ import { setCart } from './store/actions/cartAction';
 import { login, logout } from './store/actions/userActions';
 import { addMessage } from './store/actions/messageActions';
 import API from './services/api';
+import ViewPurchases from './routes/Profile/Purchases/ViewPurchases';
+import { setPurchases } from './store/actions/purchaseActions';
 
 function App() {
   const isAuth = useAuth()
@@ -32,6 +34,7 @@ function App() {
           dispatch(setCart(cart))
           dispatch(setCards(cards))
           dispatch(setAddresses(addresses))
+          dispatch(setPurchases(purchases))
         })
         .catch((e) => {
           console.log(e);
@@ -56,6 +59,10 @@ function App() {
               <Route path="addresses" element={<Addresses />}>
                 <Route index element={<ViewAddresses />} />
                 <Route path="add" element={<AddAddress />} />
+                <Route path=":id" element={<AddressDetails />} />
+              </Route>
+              <Route path="purchases" element={<Purchases />}>
+                <Route index element={<ViewPurchases />} />
                 <Route path=":id" element={<AddressDetails />} />
               </Route>
               <Route path="" element={<Navigate to="/user/profile" />} />
