@@ -20,6 +20,7 @@ const Login = () => {
   const [password, handlePassword] = useInput('')
 
   const handleLogin = (e) => {
+    e.preventDefault()
     setLoading(true)
     API.login(email, password)
       .then((data) => {

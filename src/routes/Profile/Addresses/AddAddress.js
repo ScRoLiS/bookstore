@@ -268,6 +268,8 @@ const AddAddress = () => {
   const [isLoading, setLoading] = useState(false)
 
   const addAddressHandle = (e) => {
+    e.prevenDefault()
+
     setLoading(true)
     const address = {
       whereTo: {
