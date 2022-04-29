@@ -26,8 +26,8 @@ const Registration = () => {
   const { cart } = useSelector(state => state.cart)
 
   const handleRegister = (e) => {
-    e.prevenDefault()
-    
+    e.preventDefault()
+
     setLoading(true)
     API.register(email, username, password, cart)
       .then((data) => {
