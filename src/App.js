@@ -13,9 +13,10 @@ import { setCards } from './store/actions/cardActions';
 import { setCart } from './store/actions/cartAction';
 import { login, logout } from './store/actions/userActions';
 import { addMessage } from './store/actions/messageActions';
-import API from './services/api';
-import ViewPurchases from './routes/Profile/Purchases/ViewPurchases';
 import { setPurchases } from './store/actions/purchaseActions';
+import ViewPurchases from './routes/Profile/Purchases/ViewPurchases';
+import PurchaseDetails from './routes/Profile/Purchases/PurchaseDetails';
+import API from './services/api';
 
 function App() {
   const isAuth = useAuth()
@@ -47,7 +48,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <div className="container flex flex-col flex-grow mt-4 mb-4">
+      <main className="container flex flex-col flex-grow mt-4 mb-4">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/user" >
@@ -63,7 +64,7 @@ function App() {
               </Route>
               <Route path="purchases" element={<Purchases />}>
                 <Route index element={<ViewPurchases />} />
-                <Route path=":id" element={<AddressDetails />} />
+                <Route path=":id" element={<PurchaseDetails />} />
               </Route>
               <Route path="" element={<Navigate to="/user/profile" />} />
               <Route path="purchases" element={<Purchases />} />
@@ -77,7 +78,7 @@ function App() {
           <Route path="/book/:id" element={<Book />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-      </div>
+      </main>
       <Footer />
       <div className="flex flex-col gap-2 fixed bottom-2 z-30 left-1/2 -translate-x-1/2">
         <AnimatePresence>

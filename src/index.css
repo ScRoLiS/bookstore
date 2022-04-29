@@ -136,6 +136,10 @@
     @apply gap-2 grid grid-cols-4 mb-5 text-xs md:text-sm lg:text-base;
   }
 
+  .purchase-table-row {
+    @apply gap-2 grid grid-cols-3 text-xs md:text-sm lg:text-base;
+  }
+
   .adress-table-row {
     @apply gap-2 grid grid-cols-4 md:grid-cols-6 mb-5 text-xs md:text-sm lg:text-base;
   }
