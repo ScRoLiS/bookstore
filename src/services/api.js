@@ -56,7 +56,10 @@ export default class API {
     })
 
     const data = await req.json()
-    const newReq = await API.udpateCart(data.jwt, cart)
+    let newReq = data
+
+    if (data.jwt)
+      newReq = await API.udpateCart(data.jwt, cart)
 
     return { jwt: data.jwt, user: newReq }
 
