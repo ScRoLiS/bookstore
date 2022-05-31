@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import { Footer, Message, Navbar } from './components';
+import { Footer, Message, Modal, Navbar } from './components';
 import { useAuth } from './hooks';
 import { Home, Login, Cart, PageNotFound, Book, Registration, Checkout } from './routes';
 import { Purchases, UserProfile, Profile } from './routes/Profile';
@@ -17,6 +17,8 @@ import { setPurchases } from './store/actions/purchaseActions';
 import ViewPurchases from './routes/Profile/Purchases/ViewPurchases';
 import PurchaseDetails from './routes/Profile/Purchases/PurchaseDetails';
 import API from './services/api';
+
+import heroku from './assets/heroku.svg'
 
 function App() {
   const isAuth = useAuth()
@@ -80,6 +82,10 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <Modal>
+        <img src={heroku} alt="heroku" />
+        Загузка идет слишком долго. Возможно сервер Heroku спит. Подождите несколько секунд!
+      </Modal>
       <div className="flex flex-col gap-2 fixed bottom-2 z-30 left-1/2 -translate-x-1/2">
         <AnimatePresence>
           {messages.map((item) => {
