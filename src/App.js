@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
@@ -18,7 +18,7 @@ import ViewPurchases from './routes/Profile/Purchases/ViewPurchases';
 import PurchaseDetails from './routes/Profile/Purchases/PurchaseDetails';
 import API from './services/api';
 
-import heroku from './assets/heroku.svg'
+import { ReactComponent as HerokuLogo } from './assets/heroku.svg'
 
 function App() {
   const isAuth = useAuth()
@@ -26,13 +26,16 @@ function App() {
   const navigate = useNavigate()
   const { jwt } = useSelector(state => state.user)
   const { messages } = useSelector(state => state.messages)
+  const [modal, setModal] = useState(false)
 
   useEffect(() => {
+
     if (isAuth) {
       dispatch(addMessage(Math.random(), 'success', 'Идет загрузка данных...'))
       API.getUser(jwt)
         .then((data) => {
           const { cart, cards, addresses, purchases } = data
+
           dispatch(login({ user: data, jwt }))
           dispatch(setCart(cart))
           dispatch(setCards(cards))
@@ -45,6 +48,17 @@ function App() {
           navigate('/')
         })
     }
+  }, [])
+
+  useEffect(() => {
+    const modalId = setTimeout(() => {
+      setModal(true)
+    }, 4000)
+
+    API.getBooks()
+      .finally(() => {
+        clearInterval(modalId)
+      })
   }, [])
 
   return (
@@ -82,8 +96,8 @@ function App() {
         </Routes>
       </main>
       <Footer />
-      <Modal>
-        <img src={heroku} alt="heroku" />
+      <Modal open={modal} toggle={setModal}>
+        <HerokuLogo className="w-40" />
         Загузка идет слишком долго. Возможно сервер Heroku спит. Подождите несколько секунд!
       </Modal>
       <div className="flex flex-col gap-2 fixed bottom-2 z-30 left-1/2 -translate-x-1/2">
